@@ -10,7 +10,8 @@
 
 ## Completed Milestones
 - **Design & UI**: CSS was externalized, glassmorphism and amber campfire glow effects were refined. Logo seamlessly integrated into navbars. 
-- **Discord Setup**: Server completely planned and structured. Roles defined (Vaidila, Giriniai, Žygeiviai, Kaukai, Klajokliai), category permissions strictly locked down, and Discord's native Onboarding feature adopted.
+- **Discord Setup**: Server completely planned and structured. Roles defined (Vaidila, Giriniai, Žygeiviai, Ginklanešiai, Kaukai, Klajokliai), category permissions strictly locked down, and Discord's native Onboarding feature adopted.
+- **Content & FAQs**: Updated DUK wording for WoW Forever ruleset and streamlined beginner advice. Roster roles updated on landing page.
 - **Deployment**: Local git initialized and repository pushed to GitHub. Successfully deployed via GitHub Pages, with custom domains (`wow-kaukai.lt`, `.com`, `.org`) successfully attached.
 
 ## Next Steps
