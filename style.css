@@ -280,33 +280,104 @@ footer p {
     margin-bottom: 40px;
 }
 
-/* FAQ Styles */
+/* FAQ Accordion Styles */
 .faq-list {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 30px;
+    transition: all 0.3s ease;
 }
 
 .faq-item:last-child {
     border-bottom: none;
-    padding-bottom: 0;
+}
+
+.faq-item[open] {
+    border-bottom-color: var(--gold-dim);
 }
 
 .faq-question {
     font-family: 'Cinzel', serif;
     color: var(--gold);
-    font-size: 1.3rem;
-    margin-bottom: 15px;
+    font-size: 1.25rem;
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-question::after {
+    content: '▾';
+    font-size: 1.4rem;
+    color: var(--gold-dim);
+    transition: transform 0.3s ease, color 0.3s ease;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.faq-question:hover {
+    color: #ffd79a;
+}
+
+.faq-item[open] .faq-question::after {
+    transform: rotate(180deg);
+    color: var(--gold);
 }
 
 .faq-answer {
+    padding: 0 0 20px 0;
     color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    animation: fadeInFaq 0.3s ease;
+}
+
+@keyframes fadeInFaq {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Class Roles Grid inside FAQ */
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.class-card {
+    padding: 5px 0;
+}
+
+.class-card h4 {
+    font-family: 'Cinzel', serif;
     font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+.class-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0;
 }
 
 /* ==================

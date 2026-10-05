@@ -27,17 +27,18 @@
             <h1 class="section-title" style="margin-bottom: 40px;">Dažniausiai Užduodami Klausimai</h1>
 
             <div class="faq-list">
-                <div class="faq-item">
-                    <h3 class="faq-question">Kokiame serveryje žaidžiate?</h3>
-                    <p class="faq-answer">Žaidžiame <strong>WoW Forever</strong> variantą. Mes atstovaujame
-                        <strong>Aljanso</strong> frakcijai. Svarbu paminėti, kad žaidžiame <strong>PvE (Player vs
-                            Environment)</strong> serveryje, todėl atviro pasaulio kovos tarp žaidėjų (PVP) vyksta tik
-                        tada, kai patys to norite.
-                    </p>
-                </div>
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Kokiame serveryje žaidžiate?</summary>
+                    <div class="faq-answer">
+                        <p>Žaidžiame <strong>WoW Forever</strong> variantą. Mes atstovaujame <strong>Aljanso</strong>
+                            frakcijai. Svarbu paminėti, kad žaidžiame <strong>PvE (Player vs Environment)</strong>
+                            serveryje, todėl atviro pasaulio kovos tarp žaidėjų (PVP) vyksta tik tada, kai patys to norite.
+                        </p>
+                    </div>
+                </details>
 
-                <div class="faq-item">
-                    <h3 class="faq-question">Ar priimate visiškus naujokus? Ką patartumėte pradedantiesiems?</h3>
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Ar priimate visiškus naujokus? Ką patartumėte pradedantiesiems?</summary>
                     <div class="faq-answer">
                         <p style="margin-bottom: 15px;">Tikrai taip! Naujokai pas mus labai laukiami. Klasikinis WoW
                             gali atrodyti sudėtingas, todėl štai keli mūsų patarimai patiems pirmiesiems žingsniams:</p>
@@ -55,17 +56,134 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </details>
 
-                <div class="faq-item">
-                    <h3 class="faq-question">Ar būtina naudoti Discord?</h3>
-                    <p class="faq-answer">Discord yra pagrindinė mūsų bendravimo ir naujienų platforma. Nors pačiam
-                        kalbėti nėra privaloma, tačiau ten skelbiame visą svarbiausią gildijos informaciją ir dalinamės
-                        patarimais, todėl prisijungti tikrai rekomenduojame.</p>
-                </div>
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Ką veikia kiekviena klasė ir kokie jų vaidmenys?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 15px;">
+                            Klasikiniame World of Warcraft žaidėjų vaidmenys skirstomi į tris pagrindines kategorijas:
+                            <strong>Tankai</strong> (saugo komandą), <strong>Gydytojai</strong> (išlaiko visus gyvus) ir
+                            <strong>Žalos darytojai / DPS</strong> (naikina priešus). Mūsų serveryje Aljansas turi 9 klases:
+                        </p>
+
+                        <div class="classes-grid">
+                            <div class="class-card">
+                                <h4>Karys (Warrior)</h4>
+                                <p>Tankas, Artima kova</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Paladinas (Paladin)</h4>
+                                <p>Gydytojas, Komandos apsauga</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Dvasininkas (Priest)</h4>
+                                <p>Universaliausias reidų gydytojas</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Šamanas (Shaman)</h4>
+                                <p>Gydytojas, Totemų galia</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Burtininkas (Mage)</h4>
+                                <p>Žala per atstumą</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Raganius (Warlock)</h4>
+                                <p>Demonai, Tamsioji magija</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Plėšikas (Rogue)</h4>
+                                <p>Slapstymasis, Artima kova</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Medžiotojas (Hunter)</h4>
+                                <p>Žvėrys, Tolima kova</p>
+                            </div>
+
+                            <div class="class-card">
+                                <h4>Druidas (Druid)</h4>
+                                <p>Gydytojas, Universalus hibridas</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Kaip veikia reidų grobio dalijimo sistema (SR+1)?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 15px;">
+                            Reiduose nenaudojame sudėtingų taškų (DKP) ar atsitiktinio chaoso sistemų. Mes taikome
+                            <strong>Soft-Reserve +1 (SR+1)</strong> – skaidrią, bendruomenišką ir sąžiningą tvarką, kuri
+                            saugo nuo situacijų, kai vienam žaidėjui pasiseka susirinkti viską, o kiti lieka tuščiomis rankomis:
+                        </p>
+                        <ul
+                            style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 10px;">
+                                <strong>1. Rezervacija prieš reidą (Soft-Reserve):</strong> Prieš kiekvieną žygį kiekvienas
+                                reido dalyvis specialioje nuorodoje (pateikiamoje Discord kanale) pasirenka 1 labiausiai
+                                norimą daiktą iš to reido bosų sąrašo.
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <strong>2. Kova dėl rezervuoto daikto:</strong> Nukovus bosą ir iškritus šiam daiktui,
+                                dėl jo kauliuką (<code>/roll 100</code>) meta <em>tik tie žaidėjai</em>, kurie jį buvo
+                                užsirezervavę. Jei daiktą rezervavote tik jūs vienas – jis garantuotai atitenka jums be
+                                jokio varžymosi!
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <strong>3. „+1“ taisyklė (Sąžiningumo saugiklis):</strong> Kiekvienas laimėtas pagrindinis
+                                daiktas prideda „+1“ žymą tam reidui. Jei vėliau iškrenta kitas jums tinkamas daiktas,
+                                pirmenybę kauliukų metime turi tie, kurie tame reide dar negavo nieko (0 taškų turi
+                                pirmenybę prieš +1, o +1 prieš +2). Taip grobis pasiskirsto tolygiai visai komandai.
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <strong>4. Nerezervuoti daiktai (MS &gt; OS):</strong> Jei iškrenta daiktas, kurio niekas
+                                nerezervavo, ridenti kauliuką gali visi, kam jis tinka pagal pagrindinę rolę (Main
+                                Spec, atsižvelgiant į turimus „+“). Jei niekam nereikia pagrindinei rolei – leidžiama paimti antrinei (Off-Spec).
+                            </li>
+                            <li style="margin-bottom: 8px;">
+                                <strong>5. Išimtis (Main Tank ir Gydytojai):</strong> Pagrindiniam tankui bei gydytojams gali būti taikoma
+                                išimtis kritiniams daiktams (pvz., svarbiausiems skydams, išgyvenamumo ar lemiamą maną didinantiems reliktams), nes
+                                stiprus tankas ir pasiruošę gydytojai yra visos komandos gyvybės garantas.
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Ar būtina naudoti Discord?</summary>
+                    <div class="faq-answer">
+                        <p>Discord yra pagrindinė mūsų bendravimo ir naujienų platforma. Nors pačiam
+                            kalbėti nėra privaloma, tačiau ten skelbiame visą svarbiausią gildijos informaciją ir dalinamės
+                            patarimais, todėl prisijungti tikrai rekomenduojame.</p>
+                    </div>
+                </details>
             </div>
         </div>
     </main>
+
+    <script>
+        // Ensure only one FAQ accordion item is open at a time across all browsers
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('toggle', () => {
+                if (item.open) {
+                    faqItems.forEach(other => {
+                        if (other !== item && other.open) {
+                            other.removeAttribute('open');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 
