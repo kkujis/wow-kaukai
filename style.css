@@ -664,23 +664,84 @@ main {
    MEDIA QUERIES 
    ================== */
 @media (max-width: 768px) {
+    body {
+        font-size: 1rem;
+    }
+
     nav, header {
-        padding: 20px;
+        padding: 15px 20px;
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
     }
 
     .nav-links a {
-        margin: 0 15px;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 40px 20px;
+        margin: 0 10px 40px;
+    }
+
+    #hero {
+        padding-top: 180px;
+        padding-bottom: 60px;
     }
 
     #hero h1, #start-screen h1 {
         font-size: 2.5rem;
     }
 
+    #hero p, #start-screen p {
+        font-size: 1.1rem;
+    }
+
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .cta-group .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
     .roster-item {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
+        padding: 20px 0;
+    }
+
+    .promo-block {
+        padding: 40px 20px;
+        margin: 40px 0;
+    }
+
+    footer {
+        padding: 40px 20px;
+    }
+
+    /* Testas layout adjustments */
+    main {
+        padding: 120px 15px 40px 15px; /* Added top padding for fixed header */
+    }
+
+    .quiz-container {
+        padding: 30px 20px;
     }
 
     .info-grid {
@@ -688,7 +749,50 @@ main {
         gap: 20px;
     }
 
+    .question-title {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+    }
+
+    .option-button {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+
+    .quiz-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .result-hero {
+        font-size: 2.5rem;
+    }
+
+    .traits-list {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
     .result-actions {
         flex-direction: column;
+        width: 100%;
+    }
+
+    .result-actions .btn {
+        width: 100%;
     }
 }
+
+@media (max-width: 480px) {
+    #hero h1, #start-screen h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-brand {
+        font-size: 1rem;
+    }
+}
+
