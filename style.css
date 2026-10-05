@@ -464,6 +464,12 @@ header {
     display: flex;
     align-items: center;
     gap: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.guild-badge:hover {
+    color: #ffd79a;
 }
 
 main {
