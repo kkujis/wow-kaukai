@@ -107,9 +107,9 @@
 
     <script>
         const allowedClasses = {
-            'Human': ['Karys', 'Medžiotojas', 'Burtininkas', 'Plėšikas', 'Dvasininkas', 'Raganis', 'Paladinas'],
+            'Human': ['Karys', 'Medžiotojas', 'Burtininkas', 'Plėšikas', 'Dvasininkas', 'Raganius', 'Paladinas'],
             'Dwarf': ['Karys', 'Medžiotojas', 'Plėšikas', 'Dvasininkas', 'Paladinas', 'Šamanas'],
-            'Gnome': ['Karys', 'Burtininkas', 'Plėšikas', 'Dvasininkas', 'Raganis'],
+            'Gnome': ['Karys', 'Burtininkas', 'Plėšikas', 'Dvasininkas', 'Raganius'],
             'NightElf': ['Karys', 'Medžiotojas', 'Plėšikas', 'Dvasininkas', 'Druidas']
         };
 
@@ -142,9 +142,9 @@
             { id: 'mag-arc', class: 'Burtininkas', spec: 'Mistika (Arcane)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Aukšto lygio intelektualas. Mėgsti skaičiuoti, analizuoti dėsnius ir perprasti pačią žaidimo mechanikos šerdį.' },
             { id: 'mag-fire', class: 'Burtininkas', spec: 'Ugnis (Fire)', t1: 'PI', t2: 'SA', t3: 'ŠS', desc: 'Sprogstamas talentas. Balansuoji ant rizikos ribos – tavo sprendimai drąsūs, o rezultatai pritrenkiantys.' },
             { id: 'mag-frost', class: 'Burtininkas', spec: 'Šaltis (Frost)', t1: 'PI', t2: 'SA', t3: 'GD', desc: 'Šaltas protas ir kontrolė. Neleidi emocijoms paimti viršaus, sustabdai bet kokį chaosą ir valdai situaciją.' },
-            { id: 'loc-aff', class: 'Raganis', spec: 'Kančia (Affliction)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Kantrus strategas. Veiki metodiškai ir per atstumą – lėtai sekinant priešininko jėgas, kol jam nebelieka jokių šansų.' },
-            { id: 'loc-demo', class: 'Raganis', spec: 'Demonologija (Demonology)', t1: 'PI', t2: 'MK', t3: 'GD', desc: 'Situacijos šeimininkas. Moki pažaboti net pačias tamsiausias jėgas ir priversti chaosą tarnauti tavo tikslams.' },
-            { id: 'loc-dest', class: 'Raganis', spec: 'Naikinimas (Destruction)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Ryžtingas praktikas. Jei problemą reikia pašalinti nuo kelio – padarysi tai maksimaliai greitai ir triuškinamai.' },
+            { id: 'loc-aff', class: 'Raganius', spec: 'Kančia (Affliction)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Kantrus strategas. Veiki metodiškai ir per atstumą – lėtai sekinant priešininko jėgas, kol jam nebelieka jokių šansų.' },
+            { id: 'loc-demo', class: 'Raganius', spec: 'Demonologija (Demonology)', t1: 'PI', t2: 'MK', t3: 'GD', desc: 'Situacijos šeimininkas. Moki pažaboti net pačias tamsiausias jėgas ir priversti chaosą tarnauti tavo tikslams.' },
+            { id: 'loc-dest', class: 'Raganius', spec: 'Naikinimas (Destruction)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Ryžtingas praktikas. Jei problemą reikia pašalinti nuo kelio – padarysi tai maksimaliai greitai ir triuškinamai.' },
             { id: 'dru-bal', class: 'Druidas', spec: 'Balansas (Balance)', t1: 'DS', t2: 'SA', t3: 'GD', desc: 'Pusiausvyros saugotojas. Stebi visumą, vertini gamtos dėsnius ir užtikrini, kad niekas nepažeistų harmonijos.' },
             { id: 'dru-feral', class: 'Druidas', spec: 'Laukinė kova (Feral)', t1: 'DS', t2: 'FL', t3: 'ŠS', desc: 'Universalus prisitaikėlis. Pagal situaciją gali būti tvirtas uolos skydas arba žaibiškas laukinis plėšrūnas.' },
             { id: 'dru-rest', class: 'Druidas', spec: 'Atkūrimas (Restoration)', t1: 'DS', t2: 'PG', t3: 'Pas', desc: 'Ramybės ir gyvybės šaltinis. Tavo buvimas gydo visą komandą, o rūpestis sušvelnina bet kokią įtampą.' }
@@ -434,7 +434,7 @@
         function getPhaseTitle(index) {
             if (index < 3 && isShortVersion) return '1 Dalis: Rasės atranka';
             if (index < 6 && !isShortVersion) return '1 Dalis: Rasės atranka';
-            
+
             if (isShortVersion) {
                 if (index < 5) return '2 Dalis: Pasaulėžiūra ir vertybės';
                 if (index < 7) return '3 Dalis: Kovos stilius ir reakcija';
@@ -450,7 +450,7 @@
             const q = activeQuestions[currentQIndex];
             document.getElementById('phase-badge').innerText = isShortVersion ? 'Trumpa Versija: ' + getPhaseTitle(currentQIndex) : getPhaseTitle(currentQIndex);
             document.getElementById('question-counter').innerText = `Klausimas ${currentQIndex + 1} iš ${activeQuestions.length}`;
-            
+
             const cleanText = q.q.replace(/^\d+\.\s*/, '');
             document.getElementById('question-text').innerText = `${currentQIndex + 1}. ${cleanText}`;
 
