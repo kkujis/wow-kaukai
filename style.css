@@ -371,12 +371,21 @@ footer p {
     font-family: 'Cinzel', serif;
     font-size: 1.1rem;
     color: var(--gold);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+}
+
+.minimal-role {
+    font-size: 0.85rem;
+    color: var(--gold-dim);
+    font-style: italic;
+    margin-bottom: 8px;
+    opacity: 0.8;
 }
 
 .class-card p {
     font-size: 0.95rem;
     color: var(--text-muted);
+    line-height: 1.5;
     margin: 0;
 }
 
