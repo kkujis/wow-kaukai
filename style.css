@@ -105,6 +105,19 @@ nav {
     text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%;
+    box-shadow: 0 0 10px rgba(198, 156, 109, 0.4);
+    border: 1px solid var(--gold-dim);
 }
 
 .nav-links a {
@@ -329,6 +342,9 @@ header {
     color: var(--gold);
     letter-spacing: 1px;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 main {
