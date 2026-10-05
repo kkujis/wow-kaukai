@@ -186,6 +186,17 @@
             });
         });
     </script>
-
+    <script>
+        // Vietinės aplinkos (Local environment) navigacijos pataisymas
+        if (window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+            document.querySelectorAll('a').forEach(link => {
+                let href = link.getAttribute('href');
+                // Prideda .html galūnę jei tai vidinė nuoroda be taško
+                if (href && !href.startsWith('http') && !href.startsWith('#') && !href.includes('.') && href !== './') {
+                    link.setAttribute('href', href + '.html');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
