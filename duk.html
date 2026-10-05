@@ -128,14 +128,23 @@
     </script>
     <script>
         // Vietinės aplinkos (Local environment) navigacijos pataisymas
-        if (window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost') {
+        const isLocal = window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+        
+        if (isLocal) {
             document.querySelectorAll('a').forEach(link => {
                 let href = link.getAttribute('href');
-                // Prideda .html galūnę jei tai vidinė nuoroda be taško
-                if (href && !href.startsWith('http') && !href.startsWith('#') && !href.includes('.') && href !== './') {
+                if (href === './') {
+                    link.setAttribute('href', 'index.html');
+                } else if (href && !href.startsWith('http') && !href.startsWith('#') && !href.includes('.')) {
                     link.setAttribute('href', href + '.html');
                 }
             });
+        }
+
+        // Visiems aplinkos tipams vizualiai paslepiame .html ir index.html adresų juostoje
+        if (window.location.pathname.endsWith('.html') || window.location.pathname.endsWith('index.html')) {
+            let cleanUrl = window.location.href.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+            window.history.replaceState({}, '', cleanUrl);
         }
     </script>
 </body>
