@@ -99,6 +99,7 @@
 
                 <div class="result-actions">
                     <button class="btn btn-primary" onclick="resetQuiz()">Bandyti iš naujo</button>
+                    <button class="btn" id="switch-version-btn">Bandyti kitą versiją</button>
                 </div>
             </div>
 
@@ -613,6 +614,15 @@
                 pill.innerHTML = `<span>${traitNames[t]}</span> (${traitScores[t]} tšk.)`;
                 traitsContainer.appendChild(pill);
             });
+
+            const switchBtn = document.getElementById('switch-version-btn');
+            if (isShortVersion) {
+                switchBtn.innerText = 'Bandyti pilną versiją (30 kl.)';
+                switchBtn.onclick = () => switchVersion('long');
+            } else {
+                switchBtn.innerText = 'Bandyti trumpą versiją (10 kl.)';
+                switchBtn.onclick = () => switchVersion('short');
+            }
         }
 
 
@@ -620,6 +630,11 @@
         function resetQuiz() {
             document.getElementById('result-screen').style.display = 'none';
             startQuiz(isShortVersion ? 'short' : 'long');
+        }
+
+        function switchVersion(version) {
+            document.getElementById('result-screen').style.display = 'none';
+            startQuiz(version);
         }
     </script>
 </body>
