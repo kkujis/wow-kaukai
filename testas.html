@@ -400,7 +400,9 @@
             if (isShortVersion) {
                 activeQuestions = [
                     questions[0], questions[2], questions[5], // 3 race
-                    questions[6], questions[10], questions[14], questions[16], questions[21], questions[24], questions[29] // 7 class
+                    questions[6], questions[7], questions[11], questions[12], // Phase 2 (perfect balance)
+                    questions[15], questions[17], questions[19], questions[20], // Phase 3 (best balance possible)
+                    questions[22], questions[23], questions[24], questions[27] // Phase 4 (perfect balance)
                 ];
             } else {
                 activeQuestions = questions;
@@ -430,17 +432,27 @@
         }
 
         function getPhaseTitle(index) {
-            if (index < 6) return '1 Dalis: Rasės atranka';
-            if (index < 14) return '2 Dalis: Pasaulėžiūra ir vertybės';
-            if (index < 22) return '3 Dalis: Kovos stilius ir reakcija';
-            return '4 Dalis: Vidinė kova ir dilemos';
+            if (index < 3 && isShortVersion) return '1 Dalis: Rasės atranka';
+            if (index < 6 && !isShortVersion) return '1 Dalis: Rasės atranka';
+            
+            if (isShortVersion) {
+                if (index < 7) return '2 Dalis: Pasaulėžiūra ir vertybės';
+                if (index < 11) return '3 Dalis: Kovos stilius ir reakcija';
+                return '4 Dalis: Vidinė kova ir dilemos';
+            } else {
+                if (index < 14) return '2 Dalis: Pasaulėžiūra ir vertybės';
+                if (index < 22) return '3 Dalis: Kovos stilius ir reakcija';
+                return '4 Dalis: Vidinė kova ir dilemos';
+            }
         }
 
         function showQuestion() {
             const q = activeQuestions[currentQIndex];
-            document.getElementById('phase-badge').innerText = isShortVersion ? 'Greita Atranka' : getPhaseTitle(currentQIndex);
+            document.getElementById('phase-badge').innerText = isShortVersion ? 'Trumpa Versija: ' + getPhaseTitle(currentQIndex) : getPhaseTitle(currentQIndex);
             document.getElementById('question-counter').innerText = `Klausimas ${currentQIndex + 1} iš ${activeQuestions.length}`;
-            document.getElementById('question-text').innerText = q.q;
+            
+            const cleanText = q.q.replace(/^\d+\.\s*/, '');
+            document.getElementById('question-text').innerText = `${currentQIndex + 1}. ${cleanText}`;
 
             const progressPercent = ((currentQIndex) / activeQuestions.length) * 100;
             document.getElementById('progress-fill').style.width = Math.max(progressPercent, 3) + '%';
