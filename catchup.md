@@ -10,6 +10,7 @@
 
 ## Completed Milestones
 - **Design & UI**: CSS was externalized, glassmorphism and amber campfire glow effects were refined. Logo seamlessly integrated into navbars. 
+- **Mobile Responsiveness & Quiz Polish**: Implemented a responsive hamburger menu for mobile devices, reduced CSS padding for better scaling, and stacked UI buttons for touch-friendliness. Updated `testas.html` short-form logic to be perfectly balanced mathematically across all 12 traits using exactly 10 questions, fixed dynamic numbering, added a version-toggle button to the quiz result screen, and integrated the "Testas" link directly into the navigation bar with a subtle golden text-shadow.
 - **Discord Setup**: Server completely planned and structured. Roles defined (Vaidila, Giriniai, Žygeiviai, Ginklanešiai, Kaukai, Klajokliai), category permissions strictly locked down, and Discord's native Onboarding feature adopted.
 - **Content & FAQs**: Converted `duk.html` into an interactive, single-open accordion with a clean minimalist aesthetic. Added a comprehensive breakdown of all 9 Alliance class roles (Warlock as 'Raganius', simplified Shaman/Druid descriptions, short roles), updated the SR+1 loot exceptions to include both Main Tank and Healers, and streamlined the main page roles section to display only the three player tiers: Kaukai, Ginklanešiai, and Žygeiviai.
 - **Deployment**: Local git initialized and repository pushed to GitHub. Successfully deployed via GitHub Pages, with custom domains (`wow-kaukai.lt`, `.com`, `.org`) successfully attached.
