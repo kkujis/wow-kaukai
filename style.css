@@ -161,14 +161,17 @@ nav {
 }
 
 .nav-links a.highlight-link {
-    color: #ffd79a;
-    text-shadow: 0 0 10px rgba(255, 191, 0, 0.4);
+    color: var(--gold); 
+    text-shadow: 0 0 8px rgba(198, 156, 109, 0.4);
     font-weight: 600;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: all 0.3s ease;
 }
 
 .nav-links a.highlight-link:hover {
-    color: #fff;
-    text-shadow: 0 0 15px rgba(255, 191, 0, 0.8);
+    color: #ffd79a;
+    text-shadow: 0 0 12px rgba(198, 156, 109, 0.6);
 }
 
 section {
