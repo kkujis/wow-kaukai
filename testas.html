@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personažo Testas | Kaukai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cinzel:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="testas-layout">
+
+    <header>
+        <a href="index.html" class="back-link">Grįžti į stovyklą</a>
+        <div class="guild-badge">Kaukai</div>
+    </header>
+
+    <main>
+        <div class="quiz-container">
+
+            <!-- START SCREEN -->
+            <div id="start-screen">
+                <h1>Atrask savo herojų Azerothe</h1>
+                <p>
+                    Klasikiniame žaidime personažo pasirinkimas – svarbus žingsnis, juk su juo praleisi šimtus nuotykių
+                    valandų.
+                    Atsakyk į 30 kasdieniškų, gyvenimiškų klausimų taip, kaip elgtumeisi iš tiesų, o mes parodysime, su
+                    kokia rase ir klase jausiesi geriausiai.
+                </p>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>1–6 Klausimai</h4>
+                        <p>Nustatysime tavo prigimtinę rasę: Žmogus, Nykštukas, Gnomas ar Naktinis elfas.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>7–30 Klausimai</h4>
+                        <p>Įvertinsime tavo sprendimus, vertybes, elgesį krizėse ir kovos stilių.</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>Grynas charakteris</h4>
+                        <p>Čia nėra „neteisingų“ atsakymų. Pasikliauk savo nuojauta ir charakteriu!</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="startQuiz()">
+                    Pradėti testą
+                </button>
+            </div>
+
+            <!-- QUIZ SCREEN -->
+            <div id="quiz-screen">
+                <div class="quiz-header">
+                    <span id="phase-badge">Rasės atranka</span>
+                    <span id="question-counter">Klausimas 1 iš 30</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+
+                <div class="question-title" id="question-text">
+                    Klausimo tekstas kraunamas...
+                </div>
+
+                <div class="options-list" id="options-container">
+                    <!-- Dinamiškai sugeneruojami mygtukai -->
+                </div>
+
+                <div class="quiz-footer">
+                    <button class="btn-text" id="prev-btn" onclick="previousQuestion()" disabled>
+                        Ankstesnis klausimas
+                    </button>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">
+                        Klaviatūra: A, B, C
+                    </span>
+                </div>
+            </div>
+
+            <!-- RESULT SCREEN -->
+            <div id="result-screen">
+                <div class="result-subtitle">Tavo lemtis Azerothe</div>
+                <h2 class="result-hero" id="result-hero-name">Nykštukas Šamanas</h2>
+                <div class="result-spec" id="result-hero-spec">Stichijos (Elemental)</div>
+
+                <div class="result-desc" id="result-desc">
+                    Aprašymas kraunamas...
+                </div>
+
+                <div class="traits-list" id="traits-container"></div>
+
+                <div class="result-actions">
+                    <button class="btn btn-primary" onclick="copyDiscordResult()">Nukopijuoti Discordui</button>
+                    <button class="btn" onclick="resetQuiz()">Bandyti iš naujo</button>
+                </div>
+                <div class="copy-feedback" id="copy-feedback">
+                    Nukopijuota į iškarpinę!
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const allowedClasses = {
+            'Human': ['Karys', 'Medžiotojas', 'Burtininkas', 'Plėšikas', 'Dvasininkas', 'Raganis', 'Paladinas'],
+            'Dwarf': ['Karys', 'Medžiotojas', 'Plėšikas', 'Dvasininkas', 'Paladinas', 'Šamanas'],
+            'Gnome': ['Karys', 'Burtininkas', 'Plėšikas', 'Dvasininkas', 'Raganis'],
+            'NightElf': ['Karys', 'Medžiotojas', 'Plėšikas', 'Dvasininkas', 'Druidas']
+        };
+
+        const raceNamesLT = {
+            'Human': 'Žmogus',
+            'Dwarf': 'Nykštukas',
+            'Gnome': 'Gnomas',
+            'NightElf': 'Naktinis elfas'
+        };
+
+        const specs = [
+            { id: 'war-arms', class: 'Karys', spec: 'Ginklai (Arms)', t1: 'PN', t2: 'FL', t3: 'GD', desc: 'Disciplinuotas taktikos meistras. Tau patinka aiškios taisyklės, tiesioginis konfliktų sprendimas ir šaltas užtikrintumas mūšio lauke.' },
+            { id: 'war-fury', class: 'Karys', spec: 'Įniršis (Fury)', t1: 'VS', t2: 'FL', t3: 'ŠS', desc: 'Tikra stichija. Gyveni veiksmu, emocijomis ir adrenalinu, o pyktį moki paversti nesustabdoma smogiamąja jėga.' },
+            { id: 'war-prot', class: 'Karys', spec: 'Apsauga (Protection)', t1: 'PN', t2: 'FL', t3: 'Pas', desc: 'Komandos uola ir skydas. Esi tas, kuris pirmas sugeria visus smūgius tam, kad draugai užnugaryje būtų saugūs.' },
+            { id: 'pal-holy', class: 'Paladinas', spec: 'Šventumas (Holy)', t1: 'PN', t2: 'PG', t3: 'Pas', desc: 'Pasiaukojantis užnugaris. Tau svarbiausia palaikyti ir saugoti kitus, net jei pačiam tenka atiduoti visas jėgas.' },
+            { id: 'pal-prot', class: 'Paladinas', spec: 'Apsauga (Protection)', t1: 'PN', t2: 'FL', t3: 'Pas', desc: 'Neįveikiama tvirtovė. Esi priekyje todėl, kad jauti pareigą apginti silpnesnius ir palaikyti tvarką.' },
+            { id: 'pal-ret', class: 'Paladinas', spec: 'Atpildas (Retribution)', t1: 'PN', t2: 'FL', t3: 'GD', desc: 'Teisingumo kardas. Turi tvirtas moralines ribas, nepakenti neteisybės ir be gailesčio baudi tuos, kurie skriaudžia silpnesnius.' },
+            { id: 'hun-bm', class: 'Medžiotojas', spec: 'Žvėrių valdymas (BM)', t1: 'DS', t2: 'SA', t3: 'ŠS', desc: 'Gyveni savo ritmu ir harmonijoje su gamta. Moki išlaikyti atstumą, pasikliauji instinktais ir vertini ištikimą draugystę.' },
+            { id: 'hun-mm', class: 'Medžiotojas', spec: 'Taiklumas (Marksmanship)', t1: 'VS', t2: 'SA', t3: 'GD', desc: 'Tikras snaiperis. Mėgsti veikti savarankiškai, išlaikyti saugų atstumą ir smogti maksimaliai tiksliai bei apgalvotai.' },
+            { id: 'hun-surv', class: 'Medžiotojas', spec: 'Išlikimas (Survival)', t1: 'VS', t2: 'MK', t3: 'MR', desc: 'Išgyvenimo specialistas. Gebi prisitaikyti prie bet kokių sąlygų, naudoji gudrybes, spąstus ir visada randi išeitį iš aklavietės.' },
+            { id: 'rog-assa', class: 'Plėšikas', spec: 'Žudymas (Assassination)', t1: 'VS', t2: 'MK', t3: 'MR', desc: 'Šaltakraujis pragmatikas. Svarbiausia – pasiekti rezultatą. Kerti greitai, tyliai ir būtent ten, kur labiausiai skauda.' },
+            { id: 'rog-combat', class: 'Plėšikas', spec: 'Kova (Combat)', t1: 'VS', t2: 'FL', t3: 'GD', desc: 'Laisvas avantiūristas, nebijantis atviros akistatos. Vertini asmeninę nepriklausomybę ir pasitiki savo aštriais ašmenimis.' },
+            { id: 'rog-sub', class: 'Plėšikas', spec: 'Šešėliai (Subtlety)', t1: 'VS', t2: 'MK', t3: 'ŠS', desc: 'Nematomas stebėtojas. Turi geležinę kantrybę, moki ištirpti šešėliuose ir smogti tada, kai niekas nesitiki.' },
+            { id: 'pri-disc', class: 'Dvasininkas', spec: 'Drausmė (Discipline)', t1: 'PI', t2: 'PG', t3: 'GD', desc: 'Tvarkos ir apsaugos ramstis. Problemas sprendi iš anksto – numatai pavojus ir apsaugai komandą dar prieš smogiant bėdai.' },
+            { id: 'pri-holy', class: 'Dvasininkas', spec: 'Šventumas (Holy)', t1: 'PN', t2: 'PG', t3: 'Pas', desc: 'Gryna empatija ir ramybė. Esi ta šviesa, kuri sugrąžina viltį sunkiausią akimirką ir atiduoda viską komandos labui.' },
+            { id: 'pri-shadow', class: 'Dvasininkas', spec: 'Šešėliai (Shadow)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Metodiškas manipuliatorius. Analizuoji oponentų silpnybes ir lėtai, neišvengiamai palauži jų valią iš tolo.' },
+            { id: 'sha-ele', class: 'Šamanas', spec: 'Stichijos (Elemental)', t1: 'DS', t2: 'SA', t3: 'ŠS', desc: 'Ramus, bet sprogstamas. Išlaikai vidinę pusiausvyrą, kontroliuoji mūšio lauką ir reikiamu momentu išlaisvini stichijų audrą.' },
+            { id: 'sha-enh', class: 'Šamanas', spec: 'Sustiprinimas (Enhancement)', t1: 'DS', t2: 'FL', t3: 'ŠS', desc: 'Kovotojas, jaučiantis gamtos ritmą. Tiesioginiame smūgyje apjungi fizinę jėgą, dvasinę ramybę ir stichijų galią.' },
+            { id: 'sha-rest', class: 'Šamanas', spec: 'Atkūrimas (Restoration)', t1: 'DS', t2: 'PG', t3: 'Pas', desc: 'Gyvybės srauto sergėtojas. Užglaistai kitų klaidas, palaikai komandos dvasią ir sugrąžini viską į saugias vėžes.' },
+            { id: 'mag-arc', class: 'Burtininkas', spec: 'Mistika (Arcane)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Aukšto lygio intelektualas. Mėgsti skaičiuoti, analizuoti dėsnius ir perprasti pačią žaidimo mechanikos šerdį.' },
+            { id: 'mag-fire', class: 'Burtininkas', spec: 'Ugnis (Fire)', t1: 'PI', t2: 'SA', t3: 'ŠS', desc: 'Sprogstamas talentas. Balansuoji ant rizikos ribos – tavo sprendimai drąsūs, o rezultatai pritrenkiantys.' },
+            { id: 'mag-frost', class: 'Burtininkas', spec: 'Šaltis (Frost)', t1: 'PI', t2: 'SA', t3: 'GD', desc: 'Šaltas protas ir kontrolė. Neleidi emocijoms paimti viršaus, sustabdai bet kokį chaosą ir valdai situaciją.' },
+            { id: 'loc-aff', class: 'Raganis', spec: 'Kančia (Affliction)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Kantrus strategas. Veiki metodiškai ir per atstumą – lėtai sekinant priešininko jėgas, kol jam nebelieka jokių šansų.' },
+            { id: 'loc-demo', class: 'Raganis', spec: 'Demonologija (Demonology)', t1: 'PI', t2: 'MK', t3: 'GD', desc: 'Situacijos šeimininkas. Moki pažaboti net pačias tamsiausias jėgas ir priversti chaosą tarnauti tavo tikslams.' },
+            { id: 'loc-dest', class: 'Raganis', spec: 'Naikinimas (Destruction)', t1: 'PI', t2: 'SA', t3: 'MR', desc: 'Ryžtingas praktikas. Jei problemą reikia pašalinti nuo kelio – padarysi tai maksimaliai greitai ir triuškinamai.' },
+            { id: 'dru-bal', class: 'Druidas', spec: 'Balansas (Balance)', t1: 'DS', t2: 'SA', t3: 'GD', desc: 'Pusiausvyros saugotojas. Stebi visumą, vertini gamtos dėsnius ir užtikrini, kad niekas nepažeistų harmonijos.' },
+            { id: 'dru-feral', class: 'Druidas', spec: 'Laukinė kova (Feral)', t1: 'DS', t2: 'FL', t3: 'ŠS', desc: 'Universalus prisitaikėlis. Pagal situaciją gali būti tvirtas uolos skydas arba žaibiškas laukinis plėšrūnas.' },
+            { id: 'dru-rest', class: 'Druidas', spec: 'Atkūrimas (Restoration)', t1: 'DS', t2: 'PG', t3: 'Pas', desc: 'Ramybės ir gyvybės šaltinis. Tavo buvimas gydo visą komandą, o rūpestis sušvelnina bet kokią įtampą.' }
+        ];
+
+        const traitNames = {
+            PN: 'Pareiga ir atsakomybė',
+            VS: 'Laisvė ir nepriklausomybė',
+            PI: 'Protas ir žinios',
+            DS: 'Darna ir ramybė',
+            FL: 'Fronto linija ir tiesioginis smūgis',
+            SA: 'Strategija ir kontrolė',
+            MK: 'Gudrumas ir klasta',
+            PG: 'Užnugaris ir palaikymas',
+            ŠS: 'Savitvarda ir aistra',
+            Pas: 'Pasiaukojimas dėl savų',
+            MR: 'Rezultatas ir pragmatizmas',
+            GD: 'Tvirti principai ir garbė'
+        };
+
+        const questions = [
+            // I DALIS: RASĖS (1–6)
+            {
+                type: 'race', q: "1. Kur jautiesi geriausiai ir jaukiausiai?", opts: [
+                    { text: "Miesto šurmulyje, kur verda veiksmas ir daug galimybių.", val: ['Human'], label: "A" },
+                    { text: "Garaže ar dirbtuvėse, kur galima ramiai sumeistrauti kažką naudingo.", val: ['Dwarf', 'Gnome'], label: "B" },
+                    { text: "Gūdžioje gamtoje prie laužo, kur aplink visiška ramybė ir tyla.", val: ['NightElf'], label: "C" }
+                ]
+            },
+            {
+                type: 'race', q: "2. Kaip žiūri į senas tradicijas ir istoriją?", opts: [
+                    { text: "Kam tos senienos? Reikia eksperimentuoti ir kurti kažką naujo.", val: ['Gnome'], label: "A" },
+                    { text: "Tradicijos, šaknys ir giminės garbė yra svarbiausia.", val: ['Dwarf'], label: "B" },
+                    { text: "Praeitis svarbi, bet svarbiausia – žiūrėti į ateitį ir rasti bendraminčių.", val: ['Human'], label: "C" }
+                ]
+            },
+            {
+                type: 'race', q: "3. Kai reikalai pakrypsta visiškai ne pagal planą, kaip tu dažniausiai reaguoji?", opts: [
+                    { text: "Sukandu dantis ir stengiuosi tiesiog išlaikyti visą tą spaudimą.", val: ['Dwarf'], label: "A" },
+                    { text: "Išlaikau šaltą protą ir iškart ieškau išeities, kaip išsisukti.", val: ['Gnome'], label: "B" },
+                    { text: "Atsitraukiu, stebiu situaciją ir laukiu geriausio momento veikti.", val: ['NightElf'], label: "C" }
+                ]
+            },
+            {
+                type: 'race', q: "4. Kaip vertini paslaptingus, nepaaiškinamus dalykus?", opts: [
+                    { text: "Viskas gamtoje turi savo natūralią eigą – geriau be reikalo nesikišti.", val: ['NightElf'], label: "A" },
+                    { text: "Nėra jokių stebuklų – tiesiog dar trūksta tinkamų įrankių ir tyrimų.", val: ['Gnome'], label: "B" },
+                    { text: "Svarbiausia – tvirtas vidinis moralinis kompasas, visa kita susidėlios.", val: ['Human'], label: "C" }
+                ]
+            },
+            {
+                type: 'race', q: "5. Kai tenka dirbti komandoje, kas tau asmeniškai yra svarbiausia?", opts: [
+                    { text: "Man svarbu gebėti susitarti ir rasti bendrą kalbą net su pačiais įvairiausiais žmonėmis.", val: ['Human'], label: "A" },
+                    { text: "Geležinis lojalumas – man svarbiausia žinoti, kad savų nepaliekame bėdoje.", val: ['Dwarf'], label: "B" },
+                    { text: "Abipusė pagarba asmeninei erdvei ir mokėjimas išklausyti vienas kitą.", val: ['NightElf'], label: "C" }
+                ]
+            },
+            {
+                type: 'race', q: "6. Koks tavo koziris netikėtoje kritinėje situacijoje?", opts: [
+                    { text: "Greitas prisitaikymas prie bet kokio netikėtumo.", val: ['Human'], label: "A" },
+                    { text: "Atsarginis planas B, kurio niekas kitas nesitikėjo.", val: ['Gnome', 'Dwarf'], label: "B" },
+                    { text: "Greiti refleksai – tiesiog išvengiu pavojaus, kol kiti dar galvoja.", val: ['NightElf'], label: "C" }
+                ]
+            },
+
+            // II DALIS: PASAULĖŽIŪRA (7–14)
+            {
+                type: 'class', q: "7. Taisyklės tavo gyvenime:", opts: [
+                    { text: "Taisyklės palaiko tvarką. Be jų prasideda visiškas chaosas.", val: "PN", label: "A" },
+                    { text: "Svarbiausia – mano paties sprendimai ir laisvė rinktis savo kelią.", val: "VS", label: "B" },
+                    { text: "Taisyklės turi būti žmogiškos ir lanksčios, o ne aklai vykdomos.", val: "DS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "8. Kodėl apsiimi daryti sunkų ar varginantį darbą?", opts: [
+                    { text: "Nes beprotiškai įdomu išsiaiškinti, kaip viskas veikia iš vidaus.", val: "PI", label: "A" },
+                    { text: "Nes reikia. Jei aš nepadarysiu – tai kas kitas padarys?", val: "PN", label: "B" },
+                    { text: "Noriu būti nepriklausomas ir niekam nelikti skolingas.", val: "VS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "9. Kaip vertini vadovus ar autoritetus?", opts: [
+                    { text: "Gerbiu tik tuos, kurie patys aria priekyje ir rodo asmeninį pavyzdį.", val: "PN", label: "A" },
+                    { text: "Man vadovų nereikia – pats puikiai žinau, ką ir kada daryti.", val: "VS", label: "B" },
+                    { text: "Geras vadovas tas, kuris palaiko ramią atmosferą ir nesukelia streso.", val: "DS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "10. Po tikrai ilgos ir sunkios dienos, kaip tau geriausiai sekasi atsigauti?", opts: [
+                    { text: "Mėgstu užsidaryti vienas, skaityti ir gilintis į mane dominančius dalykus.", val: "PI", label: "A" },
+                    { text: "Einu į gamtą ar tiesiog ramiai pasivaikštau, kad išvėdinčiau galvą.", val: "DS", label: "B" },
+                    { text: "Griebiuosi fizinės veiklos ar treniruotės – man reikia iškrauti susikaupusią energiją.", val: "PN", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "11. Pamatęs akivaizdžią neteisybę ar patyčias:", opts: [
+                    { text: "Iškart lendu į situaciją ir griežtai statau akiplėšą į vietą.", val: "PN", label: "A" },
+                    { text: "Bandau ramiai, diplomatiškai užgesinti ugnį be didesnio triukšmo.", val: "DS", label: "B" },
+                    { text: "Tyliai pasidarau išvadas, palaukiu tinkamo momento ir atsiteisiu.", val: "VS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "12. Kokia savybė tave labiausiai žavi drauge?", opts: [
+                    { text: "Geležinis patikimumas – žinau, kad niekada nepaves bėdoje.", val: "PN", label: "A" },
+                    { text: "Aštrus protas – mato kelis ėjimus į priekį ir perpranta esmę.", val: "PI", label: "B" },
+                    { text: "Vidinė ramybė – šalia jo gera ir ramu net didžiausioje sumaištyje.", val: "DS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "13. Tavo žinios, patirtis ir sukaupti įrankiai:", opts: [
+                    { text: "Mano asmeninis reikalas – dalinuosi tik su pačiais artimiausiais.", val: "VS", label: "A" },
+                    { text: "Renku ir kaupiu viską – niekada nežinai, kada prireiks unikalios informacijos.", val: "PI", label: "B" },
+                    { text: "Mielai dalinuosi – šiandien aš padėsiu kitiems, rytoj padės man.", val: "DS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "14. Jeigu reikėtų išsirinkti vieną pagrindinį siekį, kuris tau būtų artimiausias?", opts: [
+                    { text: "Noriu sukurti saugią, teisingą ir tvirtą aplinką savo artimiesiems.", val: "PN", label: "A" },
+                    { text: "Man svarbiausia būti visiškai laisvam ir nepriklausyti nuo kitų valios.", val: "VS", label: "B" },
+                    { text: "Noriu perprasti, kaip viskas veikia, sužinoti kuo daugiau ir būti savo srities ekspertu.", val: "PI", label: "C" }
+                ]
+            },
+
+            // III DALIS: KOVOS STILIUS IR KRIZĖS (15–22)
+            {
+                type: 'class', q: "15. Netikėta krizė komandoje ar bendrame darbe:", opts: [
+                    { text: "Imuosi vadžių pats ir gesinu gaisrą, atlaikydamas visą spaudimą.", val: "FL", label: "A" },
+                    { text: "Pirmiausia pasirūpinu žmonėmis, kad niekas nepasimestų ir nepanikuotų.", val: "PG", label: "B" },
+                    { text: "Atsitraukiu žingsnį atgal, įvertinu visumą ir sudėlioju veiksmų planą.", val: "SA", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "16. Kai susiduri su rimta konkurencija ar ginču, kokią taktiką dažniausiai renkiesi?", opts: [
+                    { text: "Apsišarvuoju kantrybe ir metodiškai laukiu, kol oponentas pats padarys klaidą.", val: "SA", label: "A" },
+                    { text: "Smūgiuoju ten, kur niekas nesitiki, pasiimu, kas mano, ir dingstu.", val: "MK", label: "B" },
+                    { text: "Einu tiesiai kaktomuša ir spaudžiu, kol varžovas pasiduoda.", val: "FL", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "17. Prisijungęs prie naujos komandos, kokį vaidmenį tu dažniausiai natūraliai prisiimi?", opts: [
+                    { text: "Mėgstu užduoti ritmą ir esu pasiruošęs atlaikyti didžiausią spaudimą.", val: "FL", label: "A" },
+                    { text: "Dažniausiai taisau kitų klaidas, palaikau užnugarį ir padedu, kai būna sunku.", val: "PG", label: "B" },
+                    { text: "Man labiausiai patinka stebėti situaciją iš šono ir patarti komandai, ką daryti.", val: "SA", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "18. Jei varžovas akivaizdžiai už tave stipresnis:", opts: [
+                    { text: "Ieškau jo silpnų vietų, gudrauju ir naudoju nestandartinius triukus.", val: "MK", label: "A" },
+                    { text: "Einu iki galo – net jei pralaimėsiu, pigiai savo odos neatiduosiu.", val: "FL", label: "B" },
+                    { text: "Surenku komandą ir draugus – kartu įveiksime bet kokį milžiną.", val: "PG", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "19. Kaip sprendi aštrius ginčus ar nesutarimus?", opts: [
+                    { text: "Rėžiu tiesiai į akis, garsiai ir be jokių užuolankų.", val: "FL", label: "A" },
+                    { text: "Ramiai, šaltais argumentais sudėlioju faktus ir išlaukiu oponento klaidos.", val: "SA", label: "B" },
+                    { text: "Ieškau kompromiso, kad abi pusės išeitų išlaikiusios orumą.", val: "PG", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "20. Sunkiose derybose ar derybiniuose susitarimuose:", opts: [
+                    { text: "Iškart griežtai ir kietai nubrėžiu savo sąlygas.", val: "FL", label: "A" },
+                    { text: "Gudrauju, apeinu aštrius kampus ir pasiekiu savo aplinkiniais keliais.", val: "MK", label: "B" },
+                    { text: "Ateinu pasiruošęs: faktai, skaičiai ir tiksli loginė analizė.", val: "SA", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "21. Jei tavo artimas draugas ar kolega netikėtai pakliūva į bėdą, kaip tu reaguoji?", opts: [
+                    { text: "Iškart stoju ginti ir visą spaudimą nukreipiu į save.", val: "FL", label: "A" },
+                    { text: "Stengiuosi kuo greičiau ištraukti jį į saugią vietą ir padėti atsigauti.", val: "PG", label: "B" },
+                    { text: "Gudrauju ir atlieku manevrą, kad nukreipčiau puolėjų dėmesį visai kitur.", val: "SA", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "22. Kaip tau labiausiai patinka dirbti ar žaisti?", opts: [
+                    { text: "Savo ramiame kampe, viską kontroliuojant per atstumą.", val: "SA", label: "A" },
+                    { text: "Nuolat judant, keičiant poziciją ir išnaudojant progas.", val: "MK", label: "B" },
+                    { text: "Pačiame veiksmo centre, kur karščiausia.", val: "FL", label: "C" }
+                ]
+            },
+
+            // IV DALIS: VIDINĖ KOVA IR DILEMOS (23–30)
+            {
+                type: 'class', q: "23. Kaip tvarkaisi su kylančiu pykčiu ar įniršiu?", opts: [
+                    { text: "Sprogstu vietoje – pyktį iškart paverčiu sprogstama jėga.", val: "ŠS", label: "A" },
+                    { text: "Sukandu dantis ir prisiverčiu išlikti ramus bei orus.", val: "GD", label: "B" },
+                    { text: "Nuryju emocijas ir šaltai pagalvoju, kaip tą situaciją išnaudoti savo naudai.", val: "MR", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "24. Ar tikslas pateisina priemones?", opts: [
+                    { text: "Geriau garbingai pralaimėti, nei laimėti nešvariais būdais.", val: "GD", label: "A" },
+                    { text: "Laimėti yra svarbiausia. Nugalėtojų niekas neteisia.", val: "MR", label: "B" },
+                    { text: "Jei tai padės mano komandai ar draugams, galiu paminti ir savo asmeninius principus.", val: "Pas", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "25. Kuri iš šių silpnybių tau labiausiai pažįstama?", opts: [
+                    { text: "Dažnai kitiems atiduodu tiek laiko ir energijos, kad pačiam nebelieka jėgų.", val: "Pas", label: "A" },
+                    { text: "Per daug graužiu save, jei kas nors neatitinka mano aukštų standartų.", val: "GD", label: "B" },
+                    { text: "Ilgai kaupiu įtampą viduje, kol galiausiai norisi viską aplinkui ištaškyti.", val: "ŠS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "26. Kai matai, kad kitas elgiasi nešvariai ar ciniškai:", opts: [
+                    { text: "Atšaunu tuo pačiu ginklu, tik dar gudriau ir skaudžiau.", val: "MR", label: "A" },
+                    { text: "Demonstratyviai žaidžiu pagal taisykles ir įrodau savo pranašumą.", val: "GD", label: "B" },
+                    { text: "Mane tai taip įsiutina, kad norisi tiesiog kietai pastatyti į vietą be kalbų.", val: "ŠS", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "27. Ką darai, kai susiduri su taisyklėmis, kurios tau atrodo visiškai absurdiškos?", opts: [
+                    { text: "Sukandu dantis ir vis tiek jų laikausi – tvarka man yra svarbiau.", val: "GD", label: "A" },
+                    { text: "Tiesiog tyliai jas apeinu taip, kad niekas net nepastebėtų.", val: "MR", label: "B" },
+                    { text: "Jei tos taisyklės kenkia žmonėms ar trukdo mūsų darbui, aš jų tiesiog nepaisau.", val: "Pas", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "28. Kuris jausmas tave labiausiai slegia?", opts: [
+                    { text: "Nusivylimas, kai tavo pastangos dėl bendro gėrio lieka neįvertintos ar net išnaudojamos.", val: "Pas", label: "A" },
+                    { text: "Nuolatinė vidinė įtampa, nes tenka slopinti savo emocijas.", val: "ŠS", label: "B" },
+                    { text: "Suvokimas, kad siekdamas tikslo atstūmei artimus žmones.", val: "MR", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "29. Juodas humoras ir nepatogios, tabu temas:", opts: [
+                    { text: "Man nėra jokių tabu – svarbu, kad būtų taiklu ir linksma.", val: "MR", label: "A" },
+                    { text: "Yra ribos ir pagarba, kurių niekada nederėtų peržengti.", val: "GD", label: "B" },
+                    { text: "Mėgstu pajuokauti, bet visada stebiu aplinkinius – jei matau, kad kažkam nemalonu, iškart sustoju.", val: "Pas", label: "C" }
+                ]
+            },
+            {
+                type: 'class', q: "30. Įsivaizduok visišką chaosą, kai atrodo, kad viskas slysta iš rankų. Kas tave motyvuoja nepasiduoti?", opts: [
+                    { text: "Grynas adrenalinas ir instinktai – aš tiesiog veikiu be jokių dvejonių.", val: "ŠS", label: "A" },
+                    { text: "Mano principai. Kad ir kas nutiktų, noriu išlaikyti savo orumą iki galo.", val: "GD", label: "B" },
+                    { text: "Žinojimas, kad kiti manimi kliaujasi. Susikaupiu, nes žinau, kad negaliu jų nuvilti.", val: "Pas", label: "C" }
+                ]
+            }
+        ];
+
+        let currentQIndex = 0;
+        let selectedAnswers = [];
+        let raceScores = { Human: 0, Dwarf: 0, Gnome: 0, NightElf: 0 };
+        let traitScores = { PN: 0, VS: 0, PI: 0, DS: 0, FL: 0, SA: 0, MK: 0, PG: 0, ŠS: 0, Pas: 0, MR: 0, GD: 0 };
+
+        let calculatedResult = null;
+
+        function startQuiz() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+            currentQIndex = 0;
+            selectedAnswers = [];
+            resetScores();
+            showQuestion();
+        }
+
+        function resetScores() {
+            raceScores = { Human: 0, Dwarf: 0, Gnome: 0, NightElf: 0 };
+            traitScores = { PN: 0, VS: 0, PI: 0, DS: 0, FL: 0, SA: 0, MK: 0, PG: 0, ŠS: 0, Pas: 0, MR: 0, GD: 0 };
+        }
+
+        function recalculateScores() {
+            resetScores();
+            selectedAnswers.forEach(ans => {
+                if (ans.type === 'race') {
+                    ans.val.forEach(r => raceScores[r]++);
+                } else if (ans.type === 'class') {
+                    traitScores[ans.val]++;
+                }
+            });
+        }
+
+        function getPhaseTitle(index) {
+            if (index < 6) return '1 Dalis: Rasės atranka';
+            if (index < 14) return '2 Dalis: Pasaulėžiūra ir vertybės';
+            if (index < 22) return '3 Dalis: Kovos stilius ir reakcija';
+            return '4 Dalis: Vidinė kova ir dilemos';
+        }
+
+        function showQuestion() {
+            const q = questions[currentQIndex];
+            document.getElementById('phase-badge').innerText = getPhaseTitle(currentQIndex);
+            document.getElementById('question-counter').innerText = `Klausimas ${currentQIndex + 1} iš ${questions.length}`;
+            document.getElementById('question-text').innerText = q.q;
+
+            const progressPercent = ((currentQIndex) / questions.length) * 100;
+            document.getElementById('progress-fill').style.width = Math.max(progressPercent, 3) + '%';
+
+            document.getElementById('prev-btn').disabled = (currentQIndex === 0);
+
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            q.opts.forEach((opt) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-button';
+                btn.innerHTML = `
+                    <span class="option-letter">${opt.label}</span>
+                    <span class="option-text">${opt.text}</span>
+                `;
+                btn.onclick = () => selectOption(q.type, opt.val, opt.label);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(type, val, label) {
+            selectedAnswers[currentQIndex] = { type, val, label };
+
+            if (currentQIndex + 1 < questions.length) {
+                currentQIndex++;
+                showQuestion();
+            } else {
+                recalculateScores();
+                calculateResult();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQIndex > 0) {
+                currentQIndex--;
+                showQuestion();
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (document.getElementById('quiz-screen').style.display !== 'block') return;
+            const key = e.key.toUpperCase();
+            const q = questions[currentQIndex];
+            if (!q) return;
+
+            let chosen = null;
+            if (key === 'A' || key === '1') chosen = q.opts[0];
+            else if (key === 'B' || key === '2') chosen = q.opts[1];
+            else if (key === 'C' || key === '3') chosen = q.opts[2];
+
+            if (chosen) {
+                selectOption(q.type, chosen.val, chosen.label);
+            } else if (e.key === 'Backspace' || e.key === 'ArrowLeft') {
+                previousQuestion();
+            }
+        });
+
+        function calculateResult() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            let maxR = -1;
+            let topRaces = [];
+            Object.keys(raceScores).forEach(r => {
+                if (raceScores[r] > maxR) {
+                    maxR = raceScores[r];
+                    topRaces = [r];
+                } else if (raceScores[r] === maxR) {
+                    topRaces.push(r);
+                }
+            });
+            let bestRace = topRaces[0];
+
+            let maxS = -1;
+            let topSpecs = [];
+            specs.forEach(s => {
+                let score = traitScores[s.t1] + traitScores[s.t2] + traitScores[s.t3];
+                if (score > maxS) {
+                    maxS = score;
+                    topSpecs = [s];
+                } else if (score === maxS) {
+                    topSpecs.push(s);
+                }
+            });
+
+            if (topSpecs.length > 1) {
+                let filtered = topSpecs.filter(s => allowedClasses[bestRace].includes(s.class));
+                if (filtered.length > 0) topSpecs = filtered;
+            }
+
+            let winner = topSpecs[0];
+            const ansLabels = selectedAnswers.map(a => a ? a.label : '');
+
+            if (topSpecs.length > 1) {
+                const ids = topSpecs.map(s => s.id);
+
+                if (ids.includes('war-arms') && ids.includes('pal-ret')) {
+                    winner = (ansLabels[6] === 'A' && ansLabels[8] === 'A')
+                        ? specs.find(s => s.id === 'pal-ret')
+                        : specs.find(s => s.id === 'war-arms');
+                } else if (ids.includes('war-prot') && ids.includes('pal-prot')) {
+                    winner = (ansLabels[23] === 'C' || ansLabels[29] === 'C')
+                        ? specs.find(s => s.id === 'pal-prot')
+                        : specs.find(s => s.id === 'war-prot');
+                } else if (ids.includes('pal-holy') && ids.includes('pri-holy')) {
+                    winner = (ansLabels[7] === 'B' || ansLabels[11] === 'C')
+                        ? specs.find(s => s.id === 'pri-holy')
+                        : specs.find(s => s.id === 'pal-holy');
+                } else if (ids.includes('rog-assa') && ids.includes('hun-surv')) {
+                    winner = (ansLabels[17] === 'A' || ansLabels[21] === 'B')
+                        ? specs.find(s => s.id === 'hun-surv')
+                        : specs.find(s => s.id === 'rog-assa');
+                } else if (ids.includes('hun-bm') && ids.includes('sha-ele')) {
+                    winner = (ansLabels[6] === 'C' || ansLabels[9] === 'B')
+                        ? specs.find(s => s.id === 'sha-ele')
+                        : specs.find(s => s.id === 'hun-bm');
+                } else if (ids.includes('dru-feral') && ids.includes('sha-enh')) {
+                    winner = (ansLabels[15] === 'C' || ansLabels[18] === 'A')
+                        ? specs.find(s => s.id === 'sha-enh')
+                        : specs.find(s => s.id === 'dru-feral');
+                } else if (ids.includes('dru-rest') && ids.includes('sha-rest')) {
+                    winner = (ansLabels[28] === 'C')
+                        ? specs.find(s => s.id === 'sha-rest')
+                        : specs.find(s => s.id === 'dru-rest');
+                } else if (ids.includes('pri-shadow') || ids.includes('loc-aff') || ids.includes('loc-dest') || ids.includes('mag-arc')) {
+                    if (ansLabels[7] === 'A' || ansLabels[11] === 'B') winner = specs.find(s => s.id === 'mag-arc');
+                    else if (ansLabels[24] === 'C' || ansLabels[27] === 'C') winner = specs.find(s => s.id === 'pri-shadow');
+                    else if (ansLabels[29] === 'B') winner = specs.find(s => s.id === 'loc-dest');
+                    else winner = specs.find(s => s.id === 'loc-aff');
+                } else {
+                    winner = topSpecs[0];
+                }
+            }
+
+            if (!allowedClasses[bestRace].includes(winner.class)) {
+                let validRaces = Object.keys(raceScores).filter(r => allowedClasses[r].includes(winner.class));
+                validRaces.sort((a, b) => raceScores[b] - raceScores[a]);
+                bestRace = validRaces[0];
+            }
+
+            calculatedResult = {
+                raceLT: raceNamesLT[bestRace],
+                raceKey: bestRace,
+                winner: winner
+            };
+
+            document.getElementById('result-hero-name').innerText = `${raceNamesLT[bestRace]} ${winner.class}`;
+            document.getElementById('result-hero-spec').innerText = winner.spec;
+            document.getElementById('result-desc').innerText = winner.desc;
+
+            const traitsContainer = document.getElementById('traits-container');
+            traitsContainer.innerHTML = '';
+            [winner.t1, winner.t2, winner.t3].forEach(t => {
+                const pill = document.createElement('div');
+                pill.className = 'trait-item';
+                pill.innerHTML = `<span>${traitNames[t]}</span> (${traitScores[t]} tšk.)`;
+                traitsContainer.appendChild(pill);
+            });
+        }
+
+        function copyDiscordResult() {
+            if (!calculatedResult) return;
+            const r = calculatedResult;
+            const textToCopy = `Mano WoW Forever testo rezultatas: **${r.raceLT} ${r.winner.class}** (${r.winner.spec})! Bruožai: ${traitNames[r.winner.t1]}, ${traitNames[r.winner.t2]}, ${traitNames[r.winner.t3]}. Prisijunk prie Aljanso gildijos „Kaukai“!`;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const feedback = document.getElementById('copy-feedback');
+                feedback.style.opacity = '1';
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                }, 4000);
+            }).catch(err => {
+                alert('Nepavyko automatiškai nukopijuoti. Štai tavo rezultatas:\n\n' + textToCopy);
+            });
+        }
+
+        function resetQuiz() {
+            document.getElementById('result-screen').style.display = 'none';
+            startQuiz();
+        }
+    </script>
+</body>
+
+</html>
