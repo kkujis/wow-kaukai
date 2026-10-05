@@ -89,7 +89,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 25px 50px;
+    padding: 20px 50px;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
@@ -97,6 +97,31 @@ nav {
     background: rgba(8, 9, 10, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--gold);
+    transition: all 0.3s ease;
 }
 
 .nav-brand {
@@ -665,43 +690,79 @@ main {
    ================== */
 @media (max-width: 768px) {
     body {
-        font-size: 1rem;
+        font-size: 0.95rem; /* Reduced scaling */
     }
 
-    nav, header {
+    nav {
         padding: 15px 20px;
         flex-direction: column;
-        gap: 15px;
+        align-items: stretch;
+    }
+
+    .nav-container {
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding-top: 20px;
         gap: 15px;
+    }
+
+    .nav-links.active {
+        display: flex;
     }
 
     .nav-links a {
         margin: 0;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(198, 156, 109, 0.1);
     }
 
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    /* Drastically reduce dead space */
     section {
-        padding: 40px 20px;
-        margin: 0 10px 40px;
+        padding: 30px 15px;
+        margin: 0 10px 30px;
     }
 
     #hero {
-        padding-top: 180px;
-        padding-bottom: 60px;
+        padding-top: 120px;
+        padding-bottom: 30px;
+        min-height: auto;
     }
 
     #hero h1, #start-screen h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: 20px;
     }
 
     #hero p, #start-screen p {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 30px;
     }
 
     .cta-group {
@@ -713,72 +774,116 @@ main {
     .cta-group .btn {
         width: 100%;
         text-align: center;
+        padding: 15px 20px;
     }
 
     .section-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .grid-3 {
+        gap: 25px;
     }
 
     .roster-item {
         flex-direction: column;
-        gap: 10px;
-        padding: 20px 0;
+        gap: 5px;
+        padding: 15px 0;
     }
 
     .promo-block {
-        padding: 40px 20px;
-        margin: 40px 0;
+        padding: 30px 15px;
+        margin: 30px 0;
     }
 
     footer {
-        padding: 40px 20px;
+        padding: 30px 15px;
     }
 
     /* Testas layout adjustments */
+    header {
+        padding: 15px 20px;
+        flex-direction: row; /* Keep badge and link side by side on mobile */
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .guild-badge {
+        font-size: 0.9rem;
+    }
+    .brand-logo {
+        width: 35px;
+        height: 35px;
+    }
+
     main {
-        padding: 120px 15px 40px 15px; /* Added top padding for fixed header */
+        padding: 90px 10px 20px 10px;
     }
 
     .quiz-container {
-        padding: 30px 20px;
+        padding: 20px 15px;
     }
 
     .info-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .info-box {
+        padding-top: 15px;
     }
 
     .question-title {
-        font-size: 1.4rem;
-        margin-bottom: 30px;
+        font-size: 1.25rem;
+        margin-bottom: 20px;
     }
 
     .option-button {
-        padding: 15px 20px;
-        font-size: 1rem;
+        padding: 12px 15px;
+        font-size: 0.95rem;
     }
 
     .quiz-header {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         align-items: flex-start;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+    }
+
+    /* Make quiz footer stack so keyboard hint doesn't crowd out the button */
+    .quiz-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
     }
 
     .result-hero {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+    .result-spec {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+    }
+    .result-desc {
+        padding: 20px 0;
+        margin-bottom: 25px;
+        font-size: 1rem;
     }
 
     .traits-list {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         align-items: center;
+        margin-bottom: 30px;
     }
 
     .result-actions {
         flex-direction: column;
         width: 100%;
+        gap: 15px;
     }
 
     .result-actions .btn {
@@ -788,7 +893,7 @@ main {
 
 @media (max-width: 480px) {
     #hero h1, #start-screen h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .nav-brand {

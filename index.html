@@ -16,19 +16,37 @@
 <body>
 
     <nav>
-        <a href="#hero" class="nav-brand">
-            <img src="kaukai_logo.jpg" alt="Kaukai" class="brand-logo">
-            Kaukai
-        </a>
-        <div class="nav-links">
-            <a href="#apie">Apie Mus</a>
-            <a href="#rangai">Rangai</a>
-            <a href="#gidai">Gidas</a>
-            <a href="#taisykles">Taisyklės</a>
-            <a href="#grobis">Grobis</a>
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">
+                <img src="kaukai_logo.jpg" alt="Kaukai" class="brand-logo">
+                Kaukai
+            </a>
+            <button class="menu-toggle" aria-label="Atidaryti meniu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#apie" onclick="closeMenu()">Apie Mus</a>
+            <a href="#rangai" onclick="closeMenu()">Rangai</a>
+            <a href="#gidai" onclick="closeMenu()">Gidas</a>
+            <a href="#taisykles" onclick="closeMenu()">Taisyklės</a>
+            <a href="#grobis" onclick="closeMenu()">Grobis</a>
             <a href="duk.html">D.U.K.</a>
         </div>
     </nav>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.querySelector('.menu-toggle').classList.toggle('active');
+        }
+        function closeMenu() {
+            document.getElementById('navLinks').classList.remove('active');
+            document.querySelector('.menu-toggle').classList.remove('active');
+        }
+    </script>
 
     <section id="hero">
         <h1>Namai toli nuo namų. Ramybės tvirtovė.</h1>
