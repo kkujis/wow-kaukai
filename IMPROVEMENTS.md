@@ -75,7 +75,7 @@ c:\WoW'as\Antigravityenv\
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="WoW Forever: Kaukai | Aljanso Gildija">
   <meta name="twitter:description" content="Atrask savo pašaukimą ir prisijunk prie jaukaus lietuvių Aljanso laužo Azerothe.">
-  <meta name="twitter:image" content="https://wow-kaukai.lt/cozy_forest_camp.jpg">
+  <meta name="twitter:image" content="https://wow-kaukai.lt/kaukai_logo.jpg">
   ```
 
 ---
