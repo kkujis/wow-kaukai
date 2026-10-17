@@ -4,23 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D.U.K. | Kaukai</title>
+    <title>D.U.K. & Taisyklės | Kaukai</title>
+    <meta name="description"
+        content="Dažniausiai užduodami klausimai apie WoW Forever PvE serverį, reidų grobio dalijimo (SR+1) sistemą ir narystę Kaukai gildijoje.">
+    <link rel="canonical" href="https://wow-kaukai.lt/duk.html">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Open Graph / Discord / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="WoW Forever: Kaukai">
+    <meta property="og:title" content="D.U.K. & SR+1 Taisyklės | Kaukai">
+    <meta property="og:description" content="Atsakymai apie serverį, naujokų priėmimą, SR+1 reidų taisykles ir Discord bendruomenę.">
+    <meta property="og:image" content="https://wow-kaukai.lt/kaukai_logo.jpg">
+    <meta property="og:url" content="https://wow-kaukai.lt/duk.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="D.U.K. & SR+1 Taisyklės | Kaukai">
+    <meta name="twitter:description" content="Viskas, ką reikia žinoti apie Kaukai taisykles ir vertybes.">
+    <meta name="twitter:image" content="https://wow-kaukai.lt/cozy_forest_camp.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cinzel:wght@400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="alternate" hreflang="lt" href="https://wow-kaukai.lt/duk.html">
+    <link rel="alternate" hreflang="en" href="https://wow-kaukai.lt/en/faq.html">
+    <link rel="alternate" hreflang="x-default" href="https://wow-kaukai.lt/duk.html">
 </head>
 
 <body class="testas-layout">
 
-    <header>
-        <a href="./" class="back-link">Grįžti į stovyklą</a>
-        <a href="./" class="guild-badge">
-            <img src="kaukai_logo.jpg" alt="Kaukai" class="brand-logo">
-            Kaukai
-        </a>
-    </header>
+    <header id="site-header"></header>
 
     <main>
         <div class="quiz-container">
@@ -111,42 +129,7 @@
         </div>
     </main>
 
-    <script>
-        // Ensure only one FAQ accordion item is open at a time across all browsers
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            item.addEventListener('toggle', () => {
-                if (item.open) {
-                    faqItems.forEach(other => {
-                        if (other !== item && other.open) {
-                            other.removeAttribute('open');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-    <script>
-        // Vietinės aplinkos (Local environment) navigacijos pataisymas
-        const isLocal = window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
-        
-        if (isLocal) {
-            document.querySelectorAll('a').forEach(link => {
-                let href = link.getAttribute('href');
-                if (href === './') {
-                    link.setAttribute('href', 'index.html');
-                } else if (href && !href.startsWith('http') && !href.startsWith('#') && !href.includes('.')) {
-                    link.setAttribute('href', href + '.html');
-                }
-            });
-        }
-
-        // Visiems aplinkos tipams vizualiai paslepiame .html ir index.html adresų juostoje
-        if (window.location.pathname.endsWith('.html') || window.location.pathname.endsWith('index.html')) {
-            let cleanUrl = window.location.href.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
-            window.history.replaceState({}, '', cleanUrl);
-        }
-    </script>
+    <script src="navbar.js"></script>
 </body>
 
 </html>
