@@ -42,77 +42,96 @@
 
     <main>
         <div class="quiz-container">
-            <h1 class="section-title" style="margin-bottom: 40px;">Dažniausiai Užduodami Klausimai</h1>
+            <h1 class="section-title" style="margin-bottom: 25px;">Dažniausiai Užduodami Klausimai</h1>
+
+            <div class="search-container">
+                <input type="text" id="faqSearchInput" class="search-input" placeholder="Ieškoti klausimų, taisyklių, SR+1..." aria-label="Ieškoti D.U.K.">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
 
             <div class="faq-list">
                 <details class="faq-item" name="faq-group">
                     <summary class="faq-question">Kokiame serveryje žaidžiate?</summary>
                     <div class="faq-answer">
-                        <p>Žaidžiame <strong>WoW Forever</strong> variantą. Mes atstovaujame <strong>Aljanso</strong>
-                            frakcijai. Svarbu paminėti, kad žaidžiame <strong>PvE (Player vs Environment)</strong>
-                            serveryje, todėl atviro pasaulio kovos tarp žaidėjų (PVP) vyksta tik tada, kai patys to norite.
-                        </p>
+                        <p>Žaidžiame <strong>WoW Forever</strong> serveryje ir atstovaujame <strong>Aljanso</strong> frakcijai. Tai yra <strong>PvE (Player vs Environment)</strong> serveris, todėl atviro pasaulio kovos prieš kitus žaidėjus vyksta tik tada, kai patys to norite įsijungę PvP vėliavėlę. Galite ramiai tyrinėti pasaulį be baimės būti užpultiems.</p>
                     </div>
                 </details>
 
                 <details class="faq-item" name="faq-group">
-                    <summary class="faq-question">Ar priimate visiškus naujokus? Ką patartumėte pradedantiesiems?</summary>
+                    <summary class="faq-question">Kokia kalba bendraujama gildijoje? Ar priimate užsieniečius?</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 15px;">Tikrai taip! Naujokai pas mus labai laukiami. Klasikinis WoW
-                            gali atrodyti sudėtingas, todėl štai keli mūsų patarimai patiems pirmiesiems žingsniams:</p>
-                        <ul
-                            style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
-                            <li style="margin-bottom: 8px;"><strong>Neskubėkite.</strong> Žaidimas skirtas mėgautis
-                                procesu, o ne lėkti prie maksimalaus lygio. Skaitykite užduotis, tyrinėkite pasaulį.
-                            </li>
-                            <li style="margin-bottom: 8px;"><strong>Klauskite.</strong> Jei kažko nežinote – rašykite
-                                gildijos pokalbių lange arba Discorde. Tikrai atsiras kas nors, kas padės ir paaiškins.
-                            </li>
-                            <li style="margin-bottom: 8px;"><strong>Taupykite auksą.</strong> Pradžioje pinigų labai
-                                trūks. Nepirkite visų įgūdžių pas trenerį – rinkitės tik tuos burtus, kuriuos iš tikrųjų
-                                naudojate. Jums prireiks aukso, kad nusipirktumėte jojamąjį gyvūną pasiekę 40-ąjį lygį!
-                            </li>
+                        <p>Pagrindinė mūsų bendravimo kalba žaidimo lange, Discorde ir balso pokalbiuose yra <strong>lietuvių</strong>. Tačiau užsieniečius ir angliškai kalbančius žaidėjus priimame labai šiltai: daugelis mūsų karininkų ir reiderių laisvai kalba angliškai, todėl svarbiausias reidų taktikas ir atsakymus į klausimus visada padedame išversti.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Ar priimate visiškus naujokus? Kaip padedate pradedantiesiems?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 12px;">Tikrai taip! Naujokai pas mus visada laukiami. Mūsų bendruomenėje vyrauja rami, neskubanti atmosfera be jokio spaudimo lėkti prie 60 lygio:</p>
+                        <ul style="padding-left: 20px; margin-bottom: 12px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 8px;"><strong>Pagalba ir patarimai:</strong> Jei kažko nesuprantate – drąsiai klauskite gildijos pokalbyje (<code>/g</code>) arba Discorde. Visada atsiras kas kantriai paaiškins.</li>
+                            <li style="margin-bottom: 8px;"><strong>Bendri žygiai:</strong> Senbuviai ir kiti nariai mielai padeda įveikti sudėtingesnes grupines užduotis ir kartu keliauja į pradedančiųjų 5 žaidėjų požemius.</li>
                         </ul>
+                        <p>Visą praktinę žaidimo mechanikų informaciją – kaip veikia užduotys, kur keliauti pritrūkus lygio, kokias profesijas pasirinkti ir kaip sutaupyti 100 aukso 40 lygio jojamajam gyvūnui – rasite mūsų <a href="gidas.html" style="color: var(--gold); text-decoration: underline;">Žaidimo gide</a>.</p>
                     </div>
                 </details>
 
                 <details class="faq-item" name="faq-group">
-                    <summary class="faq-question">Kaip veikia reidų grobio dalijimo sistema (SR+1)?</summary>
+                    <summary class="faq-question">Kaip prisijungti prie „Kaukai“ gildijos žaidime?</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 15px;">
-                            Reiduose nenaudojame sudėtingų taškų (DKP) ar atsitiktinio chaoso sistemų. Mes taikome
-                            <strong>Soft-Reserve +1 (SR+1)</strong> – skaidrią, bendruomenišką ir sąžiningą tvarką, kuri
-                            saugo nuo situacijų, kai vienam žaidėjui pasiseka susirinkti viską, o kiti lieka tuščiomis rankomis:
-                        </p>
-                        <ul
-                            style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
-                            <li style="margin-bottom: 10px;">
-                                <strong>1. Rezervacija prieš reidą (Soft-Reserve):</strong> Prieš kiekvieną žygį kiekvienas
-                                reido dalyvis specialioje nuorodoje (pateikiamoje Discord kanale) pasirenka 1 labiausiai
-                                norimą daiktą iš to reido bosų sąrašo.
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <strong>2. Kova dėl rezervuoto daikto:</strong> Nukovus bosą ir iškritus šiam daiktui,
-                                dėl jo kauliuką (<code>/roll 100</code>) meta <em>tik tie žaidėjai</em>, kurie jį buvo
-                                užsirezervavę. Jei daiktą rezervavote tik jūs vienas – jis garantuotai atitenka jums be
-                                jokio varžymosi!
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <strong>3. „+1“ taisyklė (Sąžiningumo saugiklis):</strong> Kiekvienas laimėtas pagrindinis
-                                daiktas prideda „+1“ žymą tam reidui. Jei vėliau iškrenta kitas jums tinkamas daiktas,
-                                pirmenybę kauliukų metime turi tie, kurie tame reide dar negavo nieko (0 taškų turi
-                                pirmenybę prieš +1, o +1 prieš +2). Taip grobis pasiskirsto tolygiai visai komandai.
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <strong>4. Nerezervuoti daiktai (MS &gt; OS):</strong> Jei iškrenta daiktas, kurio niekas
-                                nerezervavo, ridenti kauliuką gali visi, kam jis tinka pagal pagrindinę rolę (Main
-                                Spec, atsižvelgiant į turimus „+“). Jei niekam nereikia pagrindinei rolei – leidžiama paimti antrinei (Off-Spec).
-                            </li>
-                            <li style="margin-bottom: 8px;">
-                                <strong>5. Išimtis (Main Tank ir Gydytojai):</strong> Pagrindiniam tankui bei gydytojams gali būti taikoma
-                                išimtis kritiniams daiktams (pvz., svarbiausiems skydams, išgyvenamumo ar lemiamą maną didinantiems reliktams), nes
-                                stiprus tankas ir pasiruošę gydytojai yra visos komandos gyvybės garantas.
-                            </li>
+                        <p style="margin-bottom: 12px;">Prisijungti visai paprasta:</p>
+                        <ol style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 8px;">Žaidime pokalbių lange parašykite <code>/who Kaukai</code>. Pamatysite prisijungusius narius – brūkštelkite bet kuriam iš jų asmeninę žinutę (<code>/w Vardas</code>) su prašymu pakviesti į gildiją.</li>
+                            <li style="margin-bottom: 8px;">Arba užsukite į mūsų Discordą ir kanale <strong><code>#bendra-pokalbiai</code></strong> parašykite savo veikėjo vardą – pakvietimą atsiųsime artimiausiu metu.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Ar yra kokių nors aktyvumo ar privalomo lankomumo reikalavimų?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 10px;">Mūsų pagrindinis šūkis – <strong>„Poilsis, o ne antras darbas“</strong>. Nereikalaujame kasdienių prisijungimų, privalomo reidavimo ar ataskaitų. Žaidžiate kada norite ir kiek norite.</p>
+                        <p><em>Vienintelis prašymas:</em> jei planuojate daryti ilgesnę nei 1–2 mėnesių pertrauką, brūkštelkite trumpą žinutę Discorde, kad profilaktinio sąrašo valymo metu netyčia nepašalintume jūsų veikėjo.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Ar galiu į gildiją pasikviesti savo kitus veikėjus (Alts)?</summary>
+                    <div class="faq-answer">
+                        <p>Taip, visi jūsų papildomi veikėjai laukiami gildijoje! Tiesiog prisijungę su altu, gildijos lange (<code>/guild</code>) nustatykite savo žaidėjo pastabą (Player Note) su pagrindinio veikėjo vardu, kad bendražygiai žinotų, kas slepiasi po nauju herojumi.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Koks yra gildijos elgesio kodeksas ir atmosfera?</summary>
+                    <div class="faq-answer">
+                        <p>Mes vertiname jaukią ir ramią stovyklavietės atmosferą prie laužo. Pas mus netoleruojamas toksiškumas, politiniai ginčai, rasizmas ar pyktis dėl daiktų. Požemiuose ir reiduose klaidos yra normalus mokymosi dalykas – mes palaikome vieni kitus, o ne ieškome kaltų.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Kokiomis dienomis ir kokiu laiku vyks reidai?</summary>
+                    <div class="faq-answer">
+                        <p><strong>TBD (Bus patikslinta).</strong> Kai didesnė gildijos dalis pasieks 60 lygį, Discorde paskelbsime bendrą apklausą ir kartu išrinksime visiems patogiausius vakarus (dažniausiai planuojama 2 vakarus per savaitę, maždaug nuo 19:30–20:00 Lietuvos laiku).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Kaip veikia reidų grobio dalijimo sistema (SR+1) ir kas nutinka nenumatytais atvejais?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 15px;">Mes nenaudojame sudėtingų taškų (DKP) ar chaotiško laimės rato. Taikome <strong>Soft-Reserve +1 (SR+1)</strong> – aiškią ir sąžiningą sistemą:</p>
+                        <ul style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 10px;"><strong>1. Rezervacija (Soft-Reserve):</strong> Prieš reidą kiekvienas dalyvis specialioje nuorodoje (Discorde) pasirenka 1 labiausiai norimą daiktą iš to reido bosų.</li>
+                            <li style="margin-bottom: 10px;"><strong>2. Kova dėl rezervacijos:</strong> Iškritus šiam daiktui, kauliuką (<code>/roll 100</code>) meta <em>tik tie</em>, kurie jį užsirezervavo. Jei daiktą pasirinkote vienintelis – jis garantuotai atitenka jums!</li>
+                            <li style="margin-bottom: 10px;"><strong>3. „+1“ taisyklė:</strong> Kiekvienas laimėtas pagrindinis daiktas prideda „+1“ žymą tam vakarui. Vėliau iškritus kitam daiktui, pirmenybę ridenti turi tie, kurie dar nieko negavo (0 laimėjimų turi pirmenybę prieš +1, o +1 prieš +2).</li>
+                            <li style="margin-bottom: 10px;"><strong>4. Nerezervuoti daiktai (MS &gt; OS):</strong> Jei daikto niekas nerezervavo, ridenti gali visi, kam jis tinka pagal pagrindinę rolę (Main Spec). Jei nereikia niekam – leidžiama antrinei rolei (Off-Spec).</li>
+                            <li style="margin-bottom: 8px;"><strong>5. Išimtis (Main Tank ir Gydytojai):</strong> Pagrindiniam tankui ir gydytojams gali būti taikoma išimtis kritiniams išgyvenamumo daiktams, nes nuo jų priklauso visas reidas.</li>
+                        </ul>
+                        <p style="margin-bottom: 8px;"><strong>Nenumatyti atvejai:</strong></p>
+                        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 6px;"><em>Jei rezervuotas daiktas neiškrito:</em> Rezervacija galioja tik tam konkrečiam reidui – į kitą savaitę ji nesikelia.</li>
+                            <li style="margin-bottom: 6px;"><em>Rezervacijų keitimas:</em> Vos pradėjus kovą su pirmuoju priešu, rezervacijos užrakinamos ir jų keisti nebegalima.</li>
+                            <li style="margin-bottom: 6px;"><em>Ankstyvas išėjimas:</em> Jei žaidėjas turi išeiti iš reido anksčiau, jo rezervacija nustoja galioti visiems bosams, nukautiems po jo išėjimo.</li>
                         </ul>
                     </div>
                 </details>
@@ -120,12 +139,12 @@
                 <details class="faq-item" name="faq-group">
                     <summary class="faq-question">Ar būtina naudoti Discord?</summary>
                     <div class="faq-answer">
-                        <p>Discord yra pagrindinė mūsų bendravimo ir naujienų platforma. Nors pačiam
-                            kalbėti nėra privaloma, tačiau ten skelbiame visą svarbiausią gildijos informaciją ir dalinamės
-                            patarimais, todėl prisijungti tikrai rekomenduojame.</p>
+                        <p>Discord yra pagrindinė mūsų pranešimų, diskusijų ir reidų registracijos vieta. Reiduose reikalaujame <strong>klausytis</strong> balso kanale, kad girdėtumėte taktikos nurodymus, tačiau pačiam kalbėti per mikrofoną nėra privaloma – rašyti tekstu yra visiškai normalu. Prisijungti prie Discordo rekomenduojame kiekvienam gildijos nariui.</p>
                     </div>
                 </details>
             </div>
+
+            <div class="no-results-msg" id="noResultsMsg">Pagal jūsų paiešką klausimų nerasta.</div>
         </div>
     </main>
 

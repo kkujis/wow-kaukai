@@ -52,16 +52,8 @@ The project has transitioned from a monolithic prototype into a complete, modula
 * **Standardized 3-Sentence Class Cards**: Harmonized all 9 Alliance class descriptions across both `gidas.html` and `en/guide.html` into a clean, uniform 3-sentence structure.
 * **Community Language Policy**: Added prominent community notices in `en/index.html` and `en/faq.html` detailing the Lithuanian primary voice/chat environment while welcoming English speakers.
 
----
-
-## 3. Next Steps (Phase 3 & 4 Roadmap)
-
-Per [LONG_TERM_PLAN.md](file:///c:/WoW'as/Antigravityenv/LONG_TERM_PLAN.md), upcoming development milestones include:
-
-1. **Phase 3: Data Layer & Build-Time Generator**:
-   * Create schema files under `data/` (`faq.json`, `classes.json`, `guides.json`, `ranks.json`).
-   * Write a lightweight, zero-dependency Node.js compiler (`scripts/build.js`) that merges JSON data into HTML templates, eliminating content duplication between Lithuanian and English pages.
-   * Add client-side instant fuzzy search bar to the FAQ and Beginner's Guide pages.
-2. **Phase 4: Community & Guild Features**:
-   * Add a "Copy Result for Discord" markdown button or direct Discord Webhook posting on the quiz result screen.
-   * Build an interactive Raid Boss Tactics module for 20-man (ZG/AQ20) and 40-man (MC/Onyxia) raids.
+* **Content & UX Refinements (General Improvements Completed)**:
+  * **Authentic Guild Ranks:** Restored untranslated Lithuanian rank titles (`Kaukai`, `Ginklanešiai`, `Žygeiviai`) on [`en/index.html`](file:///c:/WoW'as/Antigravityenv/en/index.html).
+  * **Strict Separation of Concerns (FAQ vs. Guide):** Audited and separated guild/policy questions into [`duk.html`](file:///c:/WoW'as/Antigravityenv/duk.html) & [`en/faq.html`](file:///c:/WoW'as/Antigravityenv/en/faq.html) (expanded to 10 comprehensive Q&As covering server rules, attendance, alts, SR+1 edge cases, and Discord) while placing all gameplay mechanics into [`gidas.html`](file:///c:/WoW'as/Antigravityenv/gidas.html) & [`en/guide.html`](file:///c:/WoW'as/Antigravityenv/en/guide.html) (added 5-man dungeon etiquette, leveling zone tips, and a responsive profession synergy table).
+  * **Universal Live Search Filter:** Added instant client-side search bars (`#faqSearchInput` and `#guideSearchInput`) to both the FAQ and Beginner's Guide pages, powered by [`navbar.js`](file:///c:/WoW'as/Antigravityenv/navbar.js) to filter accordion sections and class cards in real time.
+  * **Scope Pruning:** Dismissed unnecessary external dependencies (Discord webhook bots, standalone raid modules) per [`GENERAL_IMPROVEMENTS.md`](file:///c:/WoW'as/Antigravityenv/GENERAL_IMPROVEMENTS.md) to keep the platform fast, static, and maintenance-free.

@@ -251,9 +251,10 @@
         }
 
         // Accordion exclusivity helper (for FAQ and Guide pages)
+        const searchInput = document.querySelector('.search-input');
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('toggle', () => {
-                if (item.open) {
+                if (item.open && (!searchInput || !searchInput.value.trim())) {
                     document.querySelectorAll('.faq-item').forEach(other => {
                         if (other !== item && other.open) {
                             other.removeAttribute('open');
@@ -262,6 +263,63 @@
                 }
             });
         });
+
+        // Universal search filter for FAQ and Guide pages
+        if (searchInput) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const classCards = document.querySelectorAll('.class-card');
+            const noResultsMsg = document.querySelector('.no-results-msg');
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.trim().toLowerCase();
+                let visibleCount = 0;
+
+                faqItems.forEach(item => {
+                    // Temporarily remove or restore native exclusivity attribute to allow multiple open matches during search
+                    if (query.length > 0) {
+                        if (item.hasAttribute('name')) {
+                            item.dataset.origName = item.getAttribute('name');
+                            item.removeAttribute('name');
+                        }
+                    } else if (item.dataset.origName) {
+                        item.setAttribute('name', item.dataset.origName);
+                    }
+
+                    const questionEl = item.querySelector('.faq-question');
+                    const answerEl = item.querySelector('.faq-answer');
+                    const text = (questionEl ? questionEl.textContent : '') + ' ' + (answerEl ? answerEl.textContent : '');
+                    
+                    const isMatch = query === '' || text.toLowerCase().includes(query);
+
+                    if (isMatch) {
+                        item.style.display = '';
+                        visibleCount++;
+                        if (query.length > 0) {
+                            item.open = true;
+                        }
+                    } else {
+                        item.style.display = 'none';
+                        item.open = false;
+                    }
+                });
+
+                // Also filter class cards if on Guide page
+                if (classCards.length > 0) {
+                    classCards.forEach(card => {
+                        const cardText = card.textContent.toLowerCase();
+                        if (query === '' || cardText.includes(query)) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+
+                if (noResultsMsg) {
+                    noResultsMsg.style.display = (visibleCount === 0 && query.length > 0) ? 'block' : 'none';
+                }
+            });
+        }
 
         // Local environment navigation compatibility
         const isLocal = window.location.protocol === 'file:' || window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';

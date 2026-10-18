@@ -42,7 +42,12 @@
 
     <main>
         <div class="quiz-container">
-            <h1 class="section-title" style="margin-bottom: 40px;">Beginner's Game Guide</h1>
+            <h1 class="section-title" style="margin-bottom: 25px;">Beginner's Game Guide</h1>
+
+            <div class="search-container">
+                <input type="text" id="guideSearchInput" class="search-input" placeholder="Search guide topics, classes, professions..." aria-label="Search guide">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
 
             <div class="faq-list">
                 <details class="faq-item" name="guide-group" open>
@@ -68,6 +73,12 @@
                             <li style="margin-bottom: 8px;"><strong>Healer:</strong> The party's lifeblood. Their duty is monitoring health bars (especially the tank's), replenishing lost hit points, dispelling debuffs, and reviving fallen allies.</li>
                             <li style="margin-bottom: 8px;"><strong>Damage Dealer (DPS):</strong> The offensive force. Their task is eliminating threats swiftly (in melee or from distance) while the tank maintains control and the healer restores health.</li>
                         </ul>
+                        <p style="margin-bottom: 8px;"><strong>Dungeon Etiquette (5-Player Party Rules):</strong></p>
+                        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 6px;"><strong>Let the tank pull:</strong> Never attack unengaged monsters first — wait for the tank to initiate and establish threat.</li>
+                            <li style="margin-bottom: 6px;"><strong>Watch the healer's mana:</strong> Before engaging the next pack, make sure your healer has sufficient mana (the blue bar).</li>
+                            <li style="margin-bottom: 6px;"><strong>Need vs. Greed:</strong> Only roll <em>Need</em> on items that are an immediate upgrade for your current main role. Roll <em>Greed</em> on items intended for selling or off-spec.</li>
+                        </ul>
                     </div>
                 </details>
 
@@ -80,18 +91,95 @@
                             <li style="margin-bottom: 8px;"><strong>Question Mark (?):</strong> A yellow question mark means the quest objectives are complete and you can claim your reward. A gray question mark means you still have unfinished objectives.</li>
                             <li style="margin-bottom: 8px;"><strong>Read the quest text:</strong> Classic WoW does not show map pins, glowing arrows, or automated GPS trail markers. Quest dialogs tell you exactly where to head (e.g. "head east along the riverbank past the mill") and what to search for.</li>
                         </ul>
+                        <p style="margin-top: 15px; margin-bottom: 10px;"><strong>What to do if you run out of quests?</strong><br>In Classic WoW, quests do not follow a single linear railroad. If you run out of quests or they become too high level (orange/red):</p>
+                        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 8px;"><strong>Travel to other racial zones:</strong> The Alliance has multiple zones for every level range. Humans can take the Deeprun Tram to Dwarf lands to explore Loch Modan or Darkshore.</li>
+                            <li style="margin-bottom: 8px;"><strong>Check taverns and watchposts:</strong> Explore every crossroad and settlement for yellow exclamation marks (<code>!</code>).</li>
+                            <li style="margin-bottom: 8px;"><strong>Run 5-man dungeons:</strong> Dungeons provide huge bursts of quest experience and great gear upgrades.</li>
+                            <li style="margin-bottom: 8px;"><strong>Ask in guild chat:</strong> Just ask in <code>/g</code> — guildmates will gladly suggest the best leveling zone for your current level.</li>
+                        </ul>
                     </div>
                 </details>
 
                 <details class="faq-item" name="guide-group">
                     <summary class="faq-question">Professions: Earning Gold and Thriving</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 15px;">Professions allow you to craft valuable gear, gather rare reagents, and establish a thriving economy. They are split into two categories:</p>
-                        <ul style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
-                            <li style="margin-bottom: 8px;"><strong>Primary Professions:</strong> You can only have two at any given time. For newcomers, gathering professions (e.g., Mining, Herbalism, Skinning) are ideal, as collected raw materials sell for high coin to other players.</li>
-                            <li style="margin-bottom: 8px;"><strong>Secondary Professions:</strong> You can learn all three! These are Cooking, Fishing, and First Aid.</li>
-                            <li style="margin-bottom: 8px;"><strong>Essential Tip:</strong> First Aid is indispensable for every class. It converts spare Cloth into bandages, letting you heal up rapidly between encounters without burning coins on costly food or drinks.</li>
-                        </ul>
+                        <p style="margin-bottom: 15px;">Professions allow you to gather raw materials, craft powerful gear, and build a steady income. They are divided into two categories: <strong>Primary</strong> (you can choose up to 2) and <strong>Secondary</strong> (you can learn all 3).</p>
+
+                        <p style="margin-top: 15px; margin-bottom: 10px;"><strong>1. Primary Profession Synergies (Choose up to 2):</strong><br>Every crafting profession naturally pairs with a specific gathering profession so you don't have to buy expensive materials on the Auction House:</p>
+                        <div class="table-responsive">
+                            <table class="guide-table">
+                                <thead>
+                                    <tr>
+                                        <th>Profession Synergy (Pair)</th>
+                                        <th>Best Suited For</th>
+                                        <th>How It Works &amp; Key Benefits</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Herbalism + Alchemy</strong></td>
+                                        <td>All Classes</td>
+                                        <td>Gather wild herbs to brew health/mana potions, stat elixirs, and endgame flasks. Indispensable and consistently profitable for level 60 raiding.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Mining + Blacksmithing</strong></td>
+                                        <td>Warriors, Paladins</td>
+                                        <td>Mine ore veins to forge heavy Mail and Plate armor, shields, weapons, and weapon sharpening stones.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Mining + Engineering</strong></td>
+                                        <td>All Classes<br><em>(especially PvP &amp; Tanks)</em></td>
+                                        <td>Turn ore and metal into bombs, stun grenades, AoE explosives, scopes, and unique gadgets. Offers the highest utility in the game.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Skinning + Leatherworking</strong></td>
+                                        <td>Rogues, Druids, Hunters, Shamans</td>
+                                        <td>Skin defeated beasts to craft Leather and Mail armor, quivers, and armor reinforcement kits.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tailoring + Enchanting</strong></td>
+                                        <td>Mages, Warlocks, Priests</td>
+                                        <td><em>Requires no gathering skill!</em> Weave Cloth dropped by humanoids into bags and robes, then Disenchant crafted gear into magical dust to permanently enchant equipment.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Skinning + Mining / Herbalism</strong><br><em>(Dual Gathering)</em></td>
+                                        <td>Beginners &amp; Gold Savers</td>
+                                        <td>Two gathering skills. Sell all collected hides, ores, and herbs on the Auction House — the fastest and easiest way to save 100 gold for your level 40 mount!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p style="margin-top: 25px; margin-bottom: 10px;"><strong>2. Secondary Professions (Learn all 3!):</strong><br>These never count toward your 2-profession limit, so every adventurer can and should master all three:</p>
+                        <div class="table-responsive">
+                            <table class="guide-table">
+                                <thead>
+                                    <tr>
+                                        <th>Secondary Profession</th>
+                                        <th>Requirements &amp; Materials</th>
+                                        <th>What It Is Good For &amp; Benefits</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>First Aid</strong></td>
+                                        <td>Cloth drops (Linen, Wool, Silk, Mageweave, Runecloth) looted from humanoid enemies.</td>
+                                        <td><strong>Mandatory for every class!</strong> Turns spare cloth into bandages that rapidly restore health in or out of combat without spending mana or buying food. Essential for Warriors, Rogues, Hunters, and Warlocks.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cooking</strong></td>
+                                        <td>Meat from beasts or fish caught via <strong>Fishing</strong>, basic spices, and a campfire or stove.</td>
+                                        <td>Cooked meals quickly recover health between fights and grant long-lasting <strong>"Well Fed"</strong> stat buffs (extra Stamina, Spirit, or Attack Power) that are invaluable in dungeons and raids.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fishing</strong></td>
+                                        <td>A Fishing Pole, optional lures (Shiny Baubles), and any body of water.</td>
+                                        <td>Directly fuels <strong>Cooking</strong> (free food supply) and <strong>Alchemy</strong> (alchemists pay top gold for Oily Blackmouth, Firefin Snapper, and Stonescale Eel for raid potions). A relaxing, steady gold-maker!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </details>
 
@@ -187,6 +275,8 @@
                     </div>
                 </details>
             </div>
+
+            <div class="no-results-msg" id="noResultsMsg">No matching guide topics or classes found for your search.</div>
         </div>
     </main>
 

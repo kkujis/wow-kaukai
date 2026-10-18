@@ -42,70 +42,96 @@
 
     <main>
         <div class="quiz-container">
-            <h1 class="section-title" style="margin-bottom: 40px;">Frequently Asked Questions</h1>
+            <h1 class="section-title" style="margin-bottom: 25px;">Frequently Asked Questions</h1>
+
+            <div class="search-container">
+                <input type="text" id="faqSearchInput" class="search-input" placeholder="Search questions, rules, SR+1..." aria-label="Search FAQ">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
 
             <div class="faq-list">
                 <details class="faq-item" name="faq-group">
-                    <summary class="faq-question">What is the primary language spoken in the guild?</summary>
-                    <div class="faq-answer">
-                        <p style="margin-bottom: 12px;">
-                            Our guild is predominantly <strong>Lithuanian-speaking</strong>. Our in-game guild chat, official Discord announcements, and Discord voice channels are conducted primarily in Lithuanian.
-                        </p>
-                        <p>
-                            <strong>Are English speakers welcome?</strong> Absolutely yes! Many of our officers and members speak fluent English. We are glad to translate key raid tactics, answer gameplay questions, and accommodate international adventurers who appreciate our calm, unhurried, and drama-free community.
-                        </p>
-                    </div>
-                </details>
-
-                <details class="faq-item" name="faq-group">
                     <summary class="faq-question">What realm and faction do you play on?</summary>
                     <div class="faq-answer">
-                        <p>We play on the <strong>WoW Forever</strong> realm. We represent the <strong>Alliance</strong> faction.
-                            Importantly, we play on a <strong>PvE (Player vs Environment)</strong> realm, meaning open-world PvP combat only happens when you voluntarily enable your PvP flag.
-                        </p>
+                        <p>We play on the <strong>WoW Forever</strong> realm and represent the <strong>Alliance</strong> faction. This is a <strong>PvE (Player vs Environment)</strong> realm, meaning open-world PvP combat only happens when you voluntarily enable your PvP flag. You can explore the world peacefully without fear of being ganked while questing.</p>
                     </div>
                 </details>
 
                 <details class="faq-item" name="faq-group">
-                    <summary class="faq-question">Do you accept complete beginners? What advice do you have for newcomers?</summary>
+                    <summary class="faq-question">What is the primary language spoken in the guild? Are international players welcome?</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 15px;">Absolutely yes! Newcomers are warmly welcomed. Classic WoW can seem challenging at first, so here are our key recommendations for your early journey:</p>
-                        <ul
-                            style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
-                            <li style="margin-bottom: 8px;"><strong>Don't rush.</strong> The game is designed to be enjoyed at a steady pace, not rushed to the level cap. Read quest lore, explore the world, and soak in the adventure.
-                            </li>
-                            <li style="margin-bottom: 8px;"><strong>Ask questions.</strong> If you don't understand something — ask in guild chat or on Discord. There will always be someone happy to explain and help out.
-                            </li>
-                            <li style="margin-bottom: 8px;"><strong>Save your gold.</strong> Money is scarce early on. Don't train every single ability rank from trainers — only buy the spells you actually cast in combat. You will need nearly 100 gold to purchase your mount at level 40!
-                            </li>
+                        <p>Our guild is predominantly <strong>Lithuanian-speaking</strong>. In-game chat, Discord text, and voice channels are conducted primarily in Lithuanian. However, international and English-speaking players are warmly accommodated! Many of our officers and raiders are fluent in English, and we gladly translate key raid instructions and answer gameplay questions.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Do you accept complete beginners? How does the guild support newcomers?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 12px;">Absolutely yes! Newcomers are always welcome. Our community fosters a calm, unhurried atmosphere with zero pressure to rush to level 60:</p>
+                        <ul style="padding-left: 20px; margin-bottom: 12px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 8px;"><strong>Friendly guidance:</strong> If you don't understand something, ask anytime in guild chat (<code>/g</code>) or on Discord. Someone will always gladly explain.</li>
+                            <li style="margin-bottom: 8px;"><strong>Group adventures:</strong> Veteran members and fellow levelers happily help with tough elite quests and team up for introductory 5-player dungeons.</li>
                         </ul>
+                        <p>For practical gameplay mechanics — how questing works, where to travel when quests run dry, which profession synergies to pick, and how to save 100 gold for your level 40 mount — check out our dedicated <a href="guide.html" style="color: var(--gold); text-decoration: underline;">Beginner's Guide</a>.</p>
                     </div>
                 </details>
 
                 <details class="faq-item" name="faq-group">
-                    <summary class="faq-question">How does the raid loot distribution system (SR+1) work?</summary>
+                    <summary class="faq-question">How do I join the guild in-game?</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 15px;">
-                            In raids, we don't use complex point systems (DKP) or chaotic free-for-all rolling. We employ
-                            <strong>Soft-Reserve +1 (SR+1)</strong> — a transparent, community-minded, and fair framework that prevents scenarios where one lucky player takes everything while others leave empty-handed:
-                        </p>
-                        <ul
-                            style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
-                            <li style="margin-bottom: 10px;">
-                                <strong>1. Pre-Raid Reservation (Soft-Reserve):</strong> Before each run, every raid participant locks in 1 desired item via a dedicated link (shared in our Discord raid channel) from that raid's boss loot table.
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <strong>2. Rolling for Reserved Loot:</strong> When a boss is defeated and that item drops, only the players who reserved it roll the dice (<code>/roll 100</code>). If you were the sole person to reserve it — it is awarded to you guaranteed without contest!
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <strong>3. The "+1" Rule (Fairness Safeguard):</strong> Every main item won adds a "+1" mark for that raid lockout. If another item you can use drops later, priority goes to teammates who haven't won anything yet in that run (0 wins have priority over +1, and +1 over +2). This ensures loot is distributed evenly across the whole team.
-                            </li>
-                            <li style="margin-bottom: 10px;">
-                                <strong>4. Unreserved Items (MS &gt; OS):</strong> If an item drops that no one reserved, all eligible players may roll if it matches their primary spec (Main Spec, taking existing "+1" marks into account). If no one needs it for their main spec, it opens to secondary roles (Off-Spec).
-                            </li>
-                            <li style="margin-bottom: 8px;">
-                                <strong>5. Core Priority Exceptions (Main Tank & Healers):</strong> Priority exceptions may be granted to the Main Tank and core Healers for vital survivability or critical mana items, as a solid tank and sustained healers guarantee the entire raid's survival.
-                            </li>
+                        <p style="margin-bottom: 12px;">Joining is very easy:</p>
+                        <ol style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 8px;">In-game, type <code>/who Kaukai</code> in your chat box. You'll see online members — whisper any of them (<code>/w CharacterName</code>) and ask for an invite.</li>
+                            <li style="margin-bottom: 8px;">Alternatively, join our Discord and post your character's name in the <strong><code>#bendra-pokalbiai</code></strong> channel, and an officer will send you an invite shortly.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Are there any activity or mandatory attendance requirements?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 10px;">Our core motto is <strong>"Rest, not a second job"</strong>. We do not enforce daily logins, mandatory raid attendance, or activity quotas. Play whenever you have free time.</p>
+                        <p><em>Our only request:</em> If you plan to take an extended break longer than 1–2 months, drop a quick note on Discord so your character isn't removed during routine inactive cleanups.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">Can I invite my alternate characters (Alts) into the guild?</summary>
+                    <div class="faq-answer">
+                        <p>Yes, all of your alts are welcome! Once invited, simply set your player note in the guild window (<code>/guild</code>) with your main character's name so guildmates know who you are.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">What is the guild's code of conduct and atmosphere?</summary>
+                    <div class="faq-answer">
+                        <p>We cherish a cozy, relaxed campfire atmosphere. We have zero tolerance for toxicity, political arguments, racism, harassment, or loot drama. In dungeons and raids, mistakes are viewed as natural learning opportunities — we support one another rather than pointing fingers.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">What days and times do raids take place?</summary>
+                    <div class="faq-answer">
+                        <p><strong>TBD (To Be Decided).</strong> As our core group approaches level 60, we will run a community poll on Discord to choose the most convenient evenings for everyone (typically 2 nights per week, starting around 19:30–20:00 Lithuanian time / CET+1).</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq-group">
+                    <summary class="faq-question">How does the raid loot distribution system (SR+1) work, and how are edge cases handled?</summary>
+                    <div class="faq-answer">
+                        <p style="margin-bottom: 15px;">We don't use complicated point systems (DKP) or chaotic free-for-alls. We run <strong>Soft-Reserve +1 (SR+1)</strong> — a clear, fair system:</p>
+                        <ul style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 10px;"><strong>1. Soft-Reserve:</strong> Before the raid, each attendee selects 1 desired item via a Discord link from that raid's loot table.</li>
+                            <li style="margin-bottom: 10px;"><strong>2. Roll for Reserve:</strong> When that item drops, only those who reserved it roll (<code>/roll 100</code>). If you were the sole person to reserve it, it is yours uncontested!</li>
+                            <li style="margin-bottom: 10px;"><strong>3. The "+1" Rule:</strong> Each main item won adds a "+1" mark for that night. On subsequent drops, players who haven't won anything yet take priority (0 wins beat +1, and +1 beats +2).</li>
+                            <li style="margin-bottom: 10px;"><strong>4. Unreserved Items (MS &gt; OS):</strong> Unreserved drops can be rolled by anyone for their primary role (Main Spec). If nobody needs it for their main role, it opens to secondary roles (Off-Spec).</li>
+                            <li style="margin-bottom: 8px;"><strong>5. Core Priority (Main Tank &amp; Healers):</strong> Priority exceptions may be granted to the Main Tank and core Healers on vital survivability items to protect the entire group.</li>
+                        </ul>
+                        <p style="margin-bottom: 8px;"><strong>Edge Cases:</strong></p>
+                        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 6px;"><em>If your item doesn't drop:</em> Reserves are valid for that specific raid only — they do not roll over to future runs.</li>
+                            <li style="margin-bottom: 6px;"><em>Changing reserves:</em> Once the first enemy in the instance is pulled, all reserves are permanently locked.</li>
+                            <li style="margin-bottom: 6px;"><em>Leaving early:</em> If a player leaves early, their reserve is forfeited for any bosses killed after their departure.</li>
                         </ul>
                     </div>
                 </details>
@@ -113,10 +139,12 @@
                 <details class="faq-item" name="faq-group">
                     <summary class="faq-question">Is Discord required?</summary>
                     <div class="faq-answer">
-                        <p>Discord is our primary communication and announcement hub. While speaking on microphone is never mandatory, all official raid sign-ups, guild updates, and useful guides are posted there, so joining is strongly recommended.</p>
+                        <p>Discord is our primary hub for guild announcements, discussions, and raid sign-ups. During raids, <strong>listening</strong> on voice is required to follow tactical calls, but speaking on a microphone is never mandatory — communicating via text chat is completely fine. We strongly recommend that all members join our Discord.</p>
                     </div>
                 </details>
             </div>
+
+            <div class="no-results-msg" id="noResultsMsg">No matching questions found for your search.</div>
         </div>
     </main>
 

@@ -42,7 +42,12 @@
 
     <main>
         <div class="quiz-container">
-            <h1 class="section-title" style="margin-bottom: 40px;">Žaidimo Gidas</h1>
+            <h1 class="section-title" style="margin-bottom: 25px;">Žaidimo Gidas</h1>
+
+            <div class="search-container">
+                <input type="text" id="guideSearchInput" class="search-input" placeholder="Ieškoti gido temų, klasių, profesijų..." aria-label="Ieškoti gide">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
 
             <div class="faq-list">
                 <details class="faq-item" name="guide-group" open>
@@ -68,6 +73,12 @@
                             <li style="margin-bottom: 8px;"><strong>Gydytojas (Healer):</strong> Komandos gyvybė. Jų atsakomybė – stebėti visų (ypač tanko) gyvybes, jas atstatyti, prikelti kritusius ir šalinti neigiamus efektus.</li>
                             <li style="margin-bottom: 8px;"><strong>Žalos darytojas (DPS):</strong> Smogiamoji jėga. Jų tikslas – kuo greičiau įveikti priešus (iš arti arba per atstumą), kol tankas juos laiko, o gydytojas visus gydo.</li>
                         </ul>
+                        <p style="margin-bottom: 8px;"><strong>Požemių etiketas (5-man grupės taisyklės):</strong></p>
+                        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 6px;"><strong>Leiskite tankui pradėti kovą (Pull):</strong> Niekada nepulkkite monstrų pirmi – palaukite, kol tankas juos sudrausmins.</li>
+                            <li style="margin-bottom: 6px;"><strong>Stebėkite gydytojo maną:</strong> Prieš puldami naują priešų grupę, įsitikinkite, kad gydytojas turi pakankamai manos (mėlyna juostelė).</li>
+                            <li style="margin-bottom: 6px;"><strong>Need prieš Greed:</strong> Spauskite <em>Need</em> tik ant tų daiktų, kuriuos iš karto užsidėsite savo pagrindinei rolei. Visiems kitiems daiktams (pardavimui) spauskite <em>Greed</em>.</li>
+                        </ul>
                     </div>
                 </details>
 
@@ -80,18 +91,95 @@
                             <li style="margin-bottom: 8px;"><strong>Klaustukas (?):</strong> Geltonas klaustukas reiškia, kad užduotis įvykdyta ir galite atsiimti atlygį. Pilkas klaustukas reiškia, kad užduotis dar nebaigta.</li>
                             <li style="margin-bottom: 8px;"><strong>Skaitykite tekstą:</strong> Klasikiniame WoW žemėlapis jums nerodys tikslios vietos, kur eiti. Užduoties tekste visada bus parašyta kuria kryptimi keliauti (pvz., "į šiaurę nuo miestelio") ir ko tiksliai ieškoti.</li>
                         </ul>
+                        <p style="margin-top: 15px; margin-bottom: 10px;"><strong>Ką daryti, jei pritrūko užduočių?</strong><br>Klasikiniame WoW užduotys neveda jūsų viena tiesia linija. Jei atrodo, kad jūsų zonoje užduotys baigėsi arba pasidarė per sunkios (oranžinės ar raudonos):</p>
+                        <ul style="padding-left: 20px; color: var(--text-muted); line-height: 1.8;">
+                            <li style="margin-bottom: 8px;"><strong>Keliaukite į kaimynines žemes:</strong> Aljansas turi keletą to paties lygio zonų. Pavyzdžiui, žmonės iš Stormwind gali nuvažiuoti požeminiu traukiniu (Deeprun Tram) į nykštukų Ironforge ir vykdyti užduotis Loch Modan ar Darkshore.</li>
+                            <li style="margin-bottom: 8px;"><strong>Tikrinkite užeigas ir sargybos postus:</strong> Užsukite į kiekvieną kaimelį ir ieškokite geltonų šauktukų (<code>!</code>).</li>
+                            <li style="margin-bottom: 8px;"><strong>Eikite į 5-man požemius:</strong> Požemiai duoda daug patirties ir puikių šarvų.</li>
+                            <li style="margin-bottom: 8px;"><strong>Klauskite gildijoje:</strong> Tiesiog parašykite gildijos pokalbyje (<code>/g</code>) – mielai pasakysime, kur jūsų lygiui geriausia keliauti.</li>
+                        </ul>
                     </div>
                 </details>
 
                 <details class="faq-item" name="guide-group">
                     <summary class="faq-question">Profesijos: Kaip užsidirbti ir išgyventi?</summary>
                     <div class="faq-answer">
-                        <p style="margin-bottom: 15px;">Profesijos leidžia jums kurti daiktus, gauti resursų ir užsidirbti pinigų. Jos skirstomos į dvi kategorijas:</p>
-                        <ul style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); line-height: 1.8;">
-                            <li style="margin-bottom: 8px;"><strong>Pagrindinės profesijos (Primary):</strong> Vienu metu galite turėti tik dvi. Pradedantiesiems geriausia rinktis resursų rinkimą (pvz., Mining, Herbalism, Skinning), nes surinktas medžiagas galėsite brangiai parduoti kitiems žaidėjams.</li>
-                            <li style="margin-bottom: 8px;"><strong>Antrinės profesijos (Secondary):</strong> Galite išmokti jas visas! Tai yra Cooking (maisto gaminimas), Fishing (žvejyba) ir First Aid (pirmoji pagalba).</li>
-                            <li style="margin-bottom: 8px;"><strong>Svarbu:</strong> Pirmoji pagalba (First Aid) yra būtina kiekvienam. Ji leidžia iš audinių likučių (Cloth) pasidaryti tvarsčius ir greitai atstatyti gyvybes po kovos, taupant pinigus maistui ar gėrimams.</li>
-                        </ul>
+                        <p style="margin-bottom: 15px;">Profesijos leidžia jums rinkti žaliavas, kurti galingus daiktus ir užsidirbti aukso. Jos skirstomos į dvi kategorijas: <strong>pagrindines</strong> (galite pasirinkti tik 2) ir <strong>antrines</strong> (galite išmokti visas 3).</p>
+
+                        <p style="margin-top: 15px; margin-bottom: 10px;"><strong>1. Pagrindinių profesijų sinergijos (galima pasirinkti 2):</strong><br>Kiekviena gamybos profesija natūraliai dera su konkrečia resursų rinkimo profesija, kad nereikėtų brangiai pirkti medžiagų aukcione:</p>
+                        <div class="table-responsive">
+                            <table class="guide-table">
+                                <thead>
+                                    <tr>
+                                        <th>Profesijų sinergija (Derinys)</th>
+                                        <th>Kam labiausiai tinka?</th>
+                                        <th>Kaip veikia ir kokia nauda?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Žolininkystė + Alchemija</strong><br><em>(Herbalism + Alchemy)</em></td>
+                                        <td>Visoms klasėms</td>
+                                        <td>Renkate lauko žoleles ir verdate gyvybės, manos bei apsauginius eliksyrus (potions, flasks). Nepakeičiama ir visada reikalinga profesija 60 lygio reiduose.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Kasyba + Kalvystė</strong><br><em>(Mining + Blacksmithing)</em></td>
+                                        <td>Kariams, Paladinams</td>
+                                        <td>Kasate rūdą ir kalate sunkius grandininius (Mail) bei plokštinius (Plate) šarvus, skydus, ginklus bei galąstuvus (sharpening stones).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Kasyba + Inžinerija</strong><br><em>(Mining + Engineering)</em></td>
+                                        <td>Visoms klasėms<br><em>(ypač PvP ir Tankams)</em></td>
+                                        <td>Iš rūdos gaminate bombas, granatas (apsvaiginimui ir plotinei žalai), taikiklius bei unikalius prietaisus. Didžiausia komunalinė nauda žaidime.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lupimas + Odadirbystė</strong><br><em>(Skinning + Leatherworking)</em></td>
+                                        <td>Plėšikams, Druidams, Medžiotojams, Šamanams</td>
+                                        <td>Nulupate nukautų žvėrių kailius ir siuvate odinius (Leather) bei grandininius (Mail) šarvus, strėlines ir šarvų sutvirtinimo lopus (Armor Kits).</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Siuvimas + Užkerėjimas</strong><br><em>(Tailoring + Enchanting)</em></td>
+                                        <td>Burtininkams, Raganiams, Dvasininkams</td>
+                                        <td><em>Nereikia rinkimo profesijos!</em> Iš humanoidų krentančių audinių (Cloth) siuvate krepšius bei medžiaginius rūbus, o sukurtus daiktus išardote (Disenchant) ir užkerite šarvus nuolatiniais bonusais.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lupimas + Kasyba / Žolininkystė</strong><br><em>(Dual Gathering)</em></td>
+                                        <td>Pradedantiesiems ir taupantiems auksą</td>
+                                        <td>Dvi rinkimo profesijos. Nieko negaminate – visas žaliavas parduodate aukcione. Tai greičiausias būdas sutaupyti 100 aukso 40 lygio jojamajam gyvūnui (mount)!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p style="margin-top: 25px; margin-bottom: 10px;"><strong>2. Antrinės profesijos (galima išmokti visas 3!):</strong><br>Jos neužima pagrindinių profesijų vietos, todėl jas išmokti gali ir turėtų kiekvienas herojus:</p>
+                        <div class="table-responsive">
+                            <table class="guide-table">
+                                <thead>
+                                    <tr>
+                                        <th>Antrinė profesija</th>
+                                        <th>Ko reikia? (Šaltiniai ir įrankiai)</th>
+                                        <th>Kam skirta ir kokia nauda?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Pirmoji pagalba</strong><br><em>(First Aid)</em></td>
+                                        <td>Audinių atraižų (Linen, Wool, Silk, Mageweave, Runecloth), krentančių iš humanoidų priešų.</td>
+                                        <td><strong>Privaloma kiekvienai klasei!</strong> Leidžia susukti tvarsčius (Bandages) ir per kelias sekundes atstatyti gyvybes nenaudojant manos ir neperkant maisto. Ypač gyvybiškai svarbu Kariams, Plėšikams, Medžiotojams ir Raganiams.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Maisto gaminimas</strong><br><em>(Cooking)</em></td>
+                                        <td>Mėsos iš nukautų žvėrių arba žuvies iš <strong>Žvejybos</strong>, prieskonių bei laužo (Campfire / viryklės).</td>
+                                        <td>Iškeptas maistas ne tik greitai atstato gyvybes tarp kovų, bet ir suteikia ilgalaikius <strong>„Well Fed“</strong> sustiprinimus (papildomą ištvermę – Stamina, dvasią – Spirit ar puolimo galią), labai naudingus požemiuose ir reiduose.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Žvejyba</strong><br><em>(Fishing)</em></td>
+                                        <td>Meškerės (Fishing Pole), jaukų (Lures) ir bet kokio vandens telkinio.</td>
+                                        <td>Tiesioginė sinergija su <strong>Maisto gaminimu</strong> (nemokamas maistas) ir <strong>Alchemija</strong> (retos žuvys, pvz., Oily Blackmouth ar Stonescale Eel, būtinos reidų eliksyrams). Ramus ir patikimas būdas užsidirbti aukso!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </details>
 
@@ -187,6 +275,8 @@
                     </div>
                 </details>
             </div>
+
+            <div class="no-results-msg" id="noResultsMsg">Pagal jūsų paiešką gido temų ar klasių nerasta.</div>
         </div>
     </main>
 
