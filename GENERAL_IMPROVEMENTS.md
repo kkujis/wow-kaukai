@@ -69,13 +69,13 @@ The FAQ contains only questions regarding the guild, community, server rules, an
 
 ---
 
-### Q1. Serveris ir frakcija / Realm & Faction
+### Q1. Žaidimas, serveris ir frakcija / Game, Realm & Faction [Pending Alignment — On Hold]
 * **LT:**
-  * *Klausimas:* Kokiame serveryje žaidžiate?
-  * *Atsakymas:* Žaidžiame **WoW Forever** serveryje ir atstovaujame **Aljanso** frakcijai. Tai yra **PvE (Player vs Environment)** serveris, todėl atviro pasaulio kovos prieš kitus žaidėjus vyksta tik tada, kai patys to norite įsijungę PvP vėliavėlę. Galite ramiai tyrinėti pasaulį be baimės būti užpultiems.
+  * *Klausimas:* Kokiame žaidime ir serveryje žaidžiate?
+  * *Atsakymas:* Žaidžiame naujajame oficialiame „Blizzard“ žaidime **Forever WoW** (veikiančiame greta modernaus WoW ir WoW Classic), **Aljanso** frakcijoje, **PvE** serveryje. Tai reiškia, kad atviro pasaulio kovos vyksta tik savanoriškai įsijungus PvP vėliavėlę, todėl galite ramiai tyrinėti pasaulį be baimės būti užpultiems.
 * **EN:**
-  * *Question:* What realm and faction do you play on?
-  * *Answer:* We play on the **WoW Forever** realm and represent the **Alliance** faction. This is a **PvE (Player vs Environment)** realm, meaning open-world PvP combat only happens when you voluntarily enable your PvP flag. You can explore the world peacefully without fear of being ganked while questing.
+  * *Question:* What game and realm do you play on?
+  * *Answer:* We play Blizzard's new title **Forever WoW** (running alongside modern WoW and WoW Classic), representing the **Alliance** on the **PvE** realm. Open-world PvP is entirely opt-in via PvP flagging, allowing you to explore peacefully without unwanted combat.
 
 ---
 

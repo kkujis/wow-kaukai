@@ -31,16 +31,17 @@ c:\WoW'as\Antigravityenv\
 
 ## 2. Priority Matrix
 
-| Category | Improvement | Priority | Effort | Impact |
+| Category | Improvement | Priority / Status | Effort | Impact |
 | :--- | :--- | :---: | :---: | :---: |
-| **UX & Styling** | Anchor scroll offset via `scroll-padding-top` | **High (Done)** | Minimal | Eliminates navbar covering section titles |
-| **SEO & Sharing** | OpenGraph & Twitter Card rich metadata | **High** | Low | Rich previews on Discord, Facebook & social apps |
-| **SEO & Brand** | Favicon & Web App Icons | **High** | Low | Eliminates 404 browser requests, elevates polish |
-| **Performance** | Image compression (WebP) & Logo thumbnailing | **High** | Low | Saves ~1.2 MB per initial page load (~75% reduction) |
-| **Architecture** | Extract shared `quiz-engine.js` (DRY logic) | **Medium** | Medium | Removes ~600 lines of duplicated JS code |
-| **Accessibility** | ARIA attributes, keyboard traps & mobile focus | **Medium** | Low | Full WCAG 2.1 compliance for screen readers & keyboard |
-| **Maintenance** | Prune unused assets (`elwynn_fireplace.jpg`) | **Low** | Minimal | Keeps git repo lean and clean |
-| **CSS Refactor** | Consolidate CSS custom properties & spacing scale | **Low** | Medium | Improves design consistency across future pages |
+| **UX & Styling** | Anchor scroll offset via `scroll-padding-top` | **Completed** | Minimal | Eliminates navbar covering section titles |
+| **SEO & Sharing** | OpenGraph & Twitter Card rich metadata | **Completed** | Low | Rich previews on Discord, Facebook & social apps |
+| **SEO & Brand** | Favicon & Web App Icons (`favicon.ico`, WebP thumbs) | **Completed** | Low | Eliminates 404 browser requests, elevates polish |
+| **Performance** | Image compression (WebP) & Logo thumbnailing | **Completed** | Low | Saves ~1.2 MB per initial page load (~83% reduction) |
+| **Architecture** | Extract shared `quiz-engine.js` (DRY logic) | **Completed** | Medium | Removes ~600 lines of duplicated JS code |
+| **Accessibility** | ARIA attributes & keyboard arrow nav in dropdown | **Completed** | Low | Full WCAG 2.1 compliance for screen readers & keyboard |
+| **Maintenance** | Prune unused assets (`elwynn_fireplace.jpg`, legacy html) | **Completed** | Minimal | Keeps git repo lean and clean |
+| **Game Identity** | Align "Forever WoW" copy as Blizzard's new official game | **Planned (On Hold)** | Low | Eliminates custom/private server misconceptions across FAQ & docs |
+| **CSS Refactor** | Consolidate CSS custom properties & spacing scale | **Low / Backlog** | Medium | Improves design consistency across future pages |
 
 ---
 
@@ -209,17 +210,25 @@ All pages currently have paired `hreflang="lt"` and `hreflang="en"` tags. To fol
 
 ---
 
-## 9. Recommended Implementation Roadmap
+## 9. Implementation Roadmap & Status
 
-1. **Sprint 1 (Quick Wins - 1-2 hours)**:
-   - Add OpenGraph, Twitter Cards, and canonical tags to all 8 HTML files.
-   - Create a 90x90px optimized `kaukai_logo.webp` and replace 481 KB JPG in navigation.
-   - Move inline styles from `#naujokams` into `style.css`.
-2. **Sprint 2 (Asset Pipeline - 1-2 hours)**:
-   - Convert `cozy_forest_camp.jpg` to WebP.
-   - Generate standard favicon set (`favicon.ico`, `icon-192.png`, `apple-touch-icon.png`).
-   - Clean up `landingv3_old.html` and `elwynn_fireplace.jpg`.
-3. **Sprint 3 (Architecture Modernization - 2-3 hours)**:
-   - Extract `quiz-engine.js`, `quiz-data-lt.js`, and `quiz-data-en.js`.
-   - Add keyboard arrow navigation and `aria-expanded` to `navbar.js`.
-   - Add body scroll locking for the mobile menu drawer.
+1. **Sprint 1 (Quick Wins) — [COMPLETED]**:
+   - [x] Added OpenGraph, Twitter Cards, and canonical tags to all 8 HTML files.
+   - [x] Created 90x90px optimized `kaukai_logo_thumb.webp` (2.4 KB) and integrated into navigation.
+   - [x] Standardized banner styles and responsive headings.
+2. **Sprint 2 (Asset Pipeline) — [COMPLETED]**:
+   - [x] Converted `cozy_forest_camp.jpg` to high-efficiency WebP (~146 KB, 83% reduction).
+   - [x] Generated standard favicon set (`favicon.ico`, `favicon-32x32.png`, `apple-touch-icon.png`).
+   - [x] Pruned dead prototype files (`landingv3_old.html`, `elwynn_fireplace.jpg`).
+3. **Sprint 3 (Architecture Modernization) — [COMPLETED]**:
+   - [x] Extracted universal `quiz-engine.js`, `quiz-data-lt.js`, and `quiz-data-en.js`.
+   - [x] Added W3C keyboard arrow navigation and `aria-expanded` state sync to `navbar.js`.
+   - [x] Unified bilingual navbar and mobile drawer.
+4. **General Improvements (FAQ & Guide Overhaul) — [COMPLETED]**:
+   - [x] Enforced authentic Lithuanian guild ranks (*Kaukai*, *Ginklanešiai*, *Žygeiviai*) on `en/index.html`.
+   - [x] Separated FAQ concerns (`duk.html` & `en/faq.html`) from gameplay guide (`gidas.html` & `en/guide.html`).
+   - [x] Implemented live client-side search filtering across both Guide and FAQ pages.
+5. **Sprint 4 (Game Ecosystem & Official Identity) — [PLANNED / ON HOLD]**:
+   - [ ] Update FAQ Q1 in `duk.html` and `en/faq.html` to clearly define **Forever WoW** as Blizzard's new official standalone game alongside Modern WoW (Retail) and WoW Classic on Battle.net (Alliance PvE realm).
+   - [ ] Audit meta descriptions, titles, and site copy to eliminate any custom/private server terminology.
+   - [ ] Maintain on hold until non-website brainstorming and scope definition are complete.
