@@ -17,3 +17,6 @@ yarn-error.log*
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Local non-website / offline work
+guild_work/
